@@ -1,0 +1,4 @@
+res://Scripts/Player.cs
+res://Scripts/UI/Console.cs
+res://Scripts/UI/FPSCounter.cs
+res://Scripts/UI/HUD.cs

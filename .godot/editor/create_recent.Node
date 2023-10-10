@@ -1,0 +1,11 @@
+LineEdit
+RichTextLabel
+VBoxContainer
+TextEdit
+ColorRect
+Control
+Window
+AnimatedSprite2D
+CenterContainer
+CanvasLayer
+Label

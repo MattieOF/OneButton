@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://bd2cti82ys8re"]
+
+[ext_resource type="Script" path="res://Scripts/Player.cs" id="1_nq5fm"]
+[ext_resource type="SpriteFrames" uid="uid://dy8o5ewlf4n3s" path="res://Art/Character/Animations/PlayerAnimations.tres" id="1_ynn7y"]
+
+[node name="Player" type="Node2D" node_paths=PackedStringArray("sprite")]
+script = ExtResource("1_nq5fm")
+sprite = NodePath("AnimatedSprite2D")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.6, 0.6)
+sprite_frames = ExtResource("1_ynn7y")
+animation = &"Idle"
