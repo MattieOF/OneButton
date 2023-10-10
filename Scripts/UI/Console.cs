@@ -35,13 +35,11 @@ public partial class Console : Window
 
 	public void WriteLine(string line)
 	{
+		if (output.GetVScrollBar().MaxValue - output.GetVScrollBar().Value - 1 <= output.GetVScrollBar().Page)
+			output.ScrollFollowing = true;
+		else
+			output.ScrollFollowing = false;
 		output.Text += $"{line}\n";
-		GD.Print($"Current: {output.GetVScrollBar().Value}, max: {output.GetVScrollBar().MaxValue}, min: {output.GetVScrollBar().MinValue}, page: {output.GetVScrollBar().Page}");
-		if ((output.GetVScrollBar().MaxValue - output.GetVScrollBar().Value) - 10 <= output.GetVScrollBar().Page)
-		{
-			output.GetVScrollBar().Value = output.GetVScrollBar().MaxValue;
-			GD.Print("Scroll!");
-		}
 	}
 
 	public void CommandEntered(string command)
