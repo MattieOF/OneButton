@@ -1,9 +1,10 @@
+using System;
 using Godot;
 
 public partial class Console : Window
 {
 	[Export] public RichTextLabel output;
-	[Export] public LineEdit inputBox;
+	[Export] public ConsoleLineEdit inputBox;
 	
 	private bool _open = false;
 	
@@ -17,7 +18,7 @@ public partial class Console : Window
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
-		if (Input.IsActionJustPressed("toggle_console"))
+		if (Input.IsActionJustPressed("toggle_console") && !Input.IsKeyPressed(Key.Shift))
 			SetOpen(!_open);
 	}
 
@@ -39,14 +40,18 @@ public partial class Console : Window
 			output.ScrollFollowing = true;
 		else
 			output.ScrollFollowing = false;
-		output.Text += $"{line}\n";
+		output.Text += $"[b][{DateTime.Now:HH:mm:ss.fff}][/b] {line}\n";
 	}
 
 	public void CommandEntered(string command)
 	{
+		if (string.IsNullOrWhiteSpace(command))
+			return;
+		
 		command = command.Trim();
 		switch (command)
 		{
+			case "quit":
 			case "exit":
 				GetTree().Quit();
 				break;

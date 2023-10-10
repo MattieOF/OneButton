@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://cwppnjqorp7ye"]
 
-[ext_resource type="FontFile" uid="uid://cryrsuf34bgtu" path="res://Art/Fonts/Roboto-Regular.ttf" id="1_n7di7"]
 [ext_resource type="Script" path="res://Scripts/UI/HUD.cs" id="1_strpx"]
-[ext_resource type="FontFile" uid="uid://mu1cxlxal40c" path="res://Art/Fonts/Roboto-Bold.ttf" id="2_fgf10"]
+[ext_resource type="FontFile" uid="uid://cryrsuf34bgtu" path="res://Art/Fonts/Roboto/Roboto-Regular.ttf" id="2_3fjfi"]
+[ext_resource type="FontFile" uid="uid://mu1cxlxal40c" path="res://Art/Fonts/Roboto/Roboto-Bold.ttf" id="3_d8rnh"]
 [ext_resource type="PackedScene" uid="uid://ytnnw4ifwl3m" path="res://Scenes/UI/FPSCounter.tscn" id="4_qobqv"]
 
 [node name="HUD" type="CanvasLayer" node_paths=PackedStringArray("scoreText")]
@@ -22,8 +22,8 @@ theme_override_constants/separation = -4
 
 [node name="ScoreHeader" type="RichTextLabel" parent="ScoreBox"]
 layout_mode = 2
-theme_override_fonts/normal_font = ExtResource("1_n7di7")
-theme_override_fonts/bold_font = ExtResource("2_fgf10")
+theme_override_fonts/normal_font = ExtResource("2_3fjfi")
+theme_override_fonts/bold_font = ExtResource("3_d8rnh")
 theme_override_font_sizes/normal_font_size = 20
 theme_override_font_sizes/bold_font_size = 20
 theme_override_font_sizes/italics_font_size = 20
@@ -35,7 +35,7 @@ fit_content = true
 
 [node name="Score" type="Label" parent="ScoreBox"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("1_n7di7")
+theme_override_fonts/font = ExtResource("2_3fjfi")
 theme_override_font_sizes/font_size = 25
 text = "0"
 horizontal_alignment = 1
