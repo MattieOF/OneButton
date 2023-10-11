@@ -1,3 +1,4 @@
+using System.Globalization;
 using Godot;
 
 // ReSharper disable CompareOfFloatsByEqualityOperator
@@ -10,7 +11,8 @@ public partial class Player : Node2D
 	[Export] public ProgressBar powerBar, healthBar;
 	[Export] public GameManager gameManager;
 
-	[Export] public AudioStream[] punchSounds = new AudioStream[3]; 
+	[Export] public AudioStream[] punchSounds = new AudioStream[3];
+	[Export] public PackedScene damageNumber;
 
 	[Export] public float attackRange = 200;
 	[Export] public float maxHp = 100;
@@ -53,6 +55,14 @@ public partial class Player : Node2D
 			// Player died!
 			gameManager.PlayerDied();
 		}
+		
+		var dmgNumber = damageNumber.Instantiate() as DamageNumber;
+		dmgNumber!.velocity = new Vector2(Utility.RNG.RandfRange(-60, 60), Utility.RNG.RandfRange(-60, -20));
+		dmgNumber.angularVelocity = Utility.RNG.RandfRange(-80, 80);
+		dmgNumber.color = Colors.Red;
+		dmgNumber.Text = dmg.ToString("F1");
+		AddChild(dmgNumber);
+		dmgNumber.GlobalPosition = GlobalPosition;
 
 		var hpPercentage = _hp / maxHp;
 		healthBar.Value = hpPercentage * 100;
@@ -134,7 +144,16 @@ public partial class Player : Node2D
 				gameManager.ResetStreak();
 			
 			var enemy = closest.GetNode("../..") as Enemy;
-			enemy!.Damage(Utility.EaseInExpo(_power, 15) * (_baseDmg + Utility.RNG.RandiRange(-10, 10)));
+			var dmg = Utility.EaseInExpo(_power, 15) * (_baseDmg + Utility.RNG.RandfRange(-10, 10));
+			enemy!.Damage(dmg);
+			
+			var dmgNumber = damageNumber.Instantiate() as DamageNumber;
+			dmgNumber!.velocity = new Vector2(Utility.RNG.RandfRange(-60, 60), Utility.RNG.RandfRange(-60, -20));
+			dmgNumber.angularVelocity = Utility.RNG.RandfRange(-80, 80);
+			dmgNumber.Text = dmg.ToString("F1");
+			AddChild(dmgNumber);
+			dmgNumber.GlobalPosition = ((enemy.GlobalPosition - GlobalPosition) / 2) + GlobalPosition;
+			
 			this.PlaySound2D(Utility.ChooseRandom(punchSounds));
 			_power = 0;
 		}
