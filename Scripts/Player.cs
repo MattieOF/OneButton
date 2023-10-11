@@ -8,13 +8,18 @@ public partial class Player : Node2D
 	[Export] public StaticBody2D body;
 	[Export] public CollisionShape2D shape;
 
+	[Export] public float attackRange = 200;
+
 	private Tween _flipTween;
 	private bool _flipped = false;
 	private Vector2 _defaultScale;
+	private AudioStreamPlayer2D _flipSoundPlayer;
 
 	public override void _Ready()
 	{
 		_defaultScale = sprite.Scale;
+
+		_flipSoundPlayer = GetNode<AudioStreamPlayer2D>("FlipSound");
 		
 		Commands.Instance.AddCommand("draw_raycasts", args =>
 		{
@@ -41,14 +46,13 @@ public partial class Player : Node2D
 	{
 		// Cast rays to the left and to the right of the player to check for any enemies
 		var spaceState = GetWorld2D().DirectSpaceState;
-		var query = PhysicsRayQueryParameters2D.Create(Transform.Origin, Transform.Origin + Vector2.Left * 1000);
+		var query = PhysicsRayQueryParameters2D.Create(Transform.Origin, Transform.Origin + Vector2.Left * attackRange);
 		query.HitFromInside = true;
 		var exclusions = query.Exclude;
 		exclusions.Add(body.GetRid()); // Avoid hitting the player itself
 		query.Exclude = exclusions;
 		var left = spaceState.IntersectRay(query);
-		
-		query.To = Transform.Origin + Vector2.Right * 1000;
+		query.To = Transform.Origin + Vector2.Right * attackRange;
 		var right = spaceState.IntersectRay(query);
 
 		// Calculate the distance to the nearest enemy either side of the player
@@ -91,6 +95,7 @@ public partial class Player : Node2D
 		_flipTween = sprite.CreateTween();
 		_flipTween.TweenProperty(sprite, new NodePath(Node2D.PropertyName.Scale),
 			Variant.From(new Vector2(_flipped ? _defaultScale.X : -_defaultScale.X, _defaultScale.Y)), 0.15f);
+		_flipSoundPlayer.Play();
 		_flipped = !_flipped;
 	}
 }

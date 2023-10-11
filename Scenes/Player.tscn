@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://bd2cti82ys8re"]
+[gd_scene load_steps=5 format=3 uid="uid://bd2cti82ys8re"]
 
 [ext_resource type="Script" path="res://Scripts/Player.cs" id="1_nq5fm"]
 [ext_resource type="SpriteFrames" uid="uid://dy8o5ewlf4n3s" path="res://Art/Character/Animations/PlayerAnimations.tres" id="1_ynn7y"]
+[ext_resource type="AudioStream" uid="uid://c52s0u17wwwcr" path="res://Sound/Woosh.wav" id="3_288kg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_02wo4"]
 size = Vector2(200, 300)
@@ -20,3 +21,6 @@ animation = &"Idle"
 
 [node name="Shape" type="CollisionShape2D" parent="Sprite/Body"]
 shape = SubResource("RectangleShape2D_02wo4")
+
+[node name="FlipSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_288kg")
