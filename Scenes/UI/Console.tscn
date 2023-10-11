@@ -79,11 +79,11 @@ theme_override_fonts/normal_font = ExtResource("3_wblew")
 theme_override_fonts/bold_font = ExtResource("4_g85lo")
 theme_override_fonts/italics_font = ExtResource("5_dg1bm")
 theme_override_fonts/bold_italics_font = ExtResource("6_gj6h2")
-theme_override_font_sizes/normal_font_size = 13
-theme_override_font_sizes/bold_font_size = 13
-theme_override_font_sizes/italics_font_size = 13
-theme_override_font_sizes/bold_italics_font_size = 13
-theme_override_font_sizes/mono_font_size = 13
+theme_override_font_sizes/normal_font_size = 12
+theme_override_font_sizes/bold_font_size = 12
+theme_override_font_sizes/italics_font_size = 12
+theme_override_font_sizes/bold_italics_font_size = 12
+theme_override_font_sizes/mono_font_size = 12
 theme_override_styles/normal = SubResource("StyleBoxFlat_jrxye")
 bbcode_enabled = true
 
