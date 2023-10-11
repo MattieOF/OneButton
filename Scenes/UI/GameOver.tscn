@@ -1,0 +1,88 @@
+[gd_scene load_steps=4 format=3 uid="uid://3ss2ahrcmqnv"]
+
+[ext_resource type="Script" path="res://Scripts/UI/GameOverUI.cs" id="1_fxypf"]
+[ext_resource type="FontFile" uid="uid://e27tnhgvq05l" path="res://Art/Fonts/Roboto/Roboto-BoldItalic.ttf" id="1_il1l3"]
+
+[sub_resource type="Curve2D" id="Curve2D_eeux3"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -12, 50, 0, 0, 0, 0, -12, 140, 0, 0, 0, 0, -12, 50)
+}
+point_count = 3
+
+[node name="GameOver" type="CanvasLayer" node_paths=PackedStringArray("buttons", "pointer", "scoreText", "path")]
+script = ExtResource("1_fxypf")
+buttons = [NodePath("VBoxContainer/Start"), NodePath("VBoxContainer/Quit")]
+pointer = NodePath("Pointer")
+scoreText = NodePath("ScoreText")
+path = NodePath("VBoxContainer/Path")
+gameScene = "res://Scenes/Game.tscn"
+menuScene = "res://Scenes/MainMenu/Menu.tscn"
+
+[node name="Label" type="Label" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -154.5
+offset_top = 32.0
+offset_right = 154.5
+offset_bottom = 106.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("1_il1l3")
+theme_override_font_sizes/font_size = 60
+text = "Game Over!"
+
+[node name="ScoreText" type="Label" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -212.5
+offset_top = 105.0
+offset_right = 212.5
+offset_bottom = 179.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("1_il1l3")
+theme_override_font_sizes/font_size = 20
+text = "Highscore: 100
+Final score: 100"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -63.0
+offset_top = -91.0
+offset_right = 63.0
+offset_bottom = 91.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Path" type="Path2D" parent="VBoxContainer"]
+position = Vector2(-30, 0)
+curve = SubResource("Curve2D_eeux3")
+
+[node name="Start" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.545098, 0.545098, 0.545098, 1)
+theme_override_font_sizes/font_size = 40
+text = "Retry"
+
+[node name="Quit" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.545098, 0.545098, 0.545098, 1)
+theme_override_font_sizes/font_size = 40
+text = "Quit"
+
+[node name="Pointer" type="Label" parent="."]
+offset_left = -20.0
+offset_top = -33.0
+offset_right = 20.0
+offset_bottom = 33.0
+theme_override_font_sizes/font_size = 45
+text = ">"
+horizontal_alignment = 1
+vertical_alignment = 1

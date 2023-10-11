@@ -31,26 +31,26 @@ public partial class Player : Node2D
 
 		_flipSoundPlayer = GetNode<AudioStreamPlayer2D>("FlipSound");
 		
-		Commands.Instance.AddCommand("draw_raycasts", args =>
-		{
-			// TODO: Doesn't seem to work?
-			Line2D line = new();
-			line.AddPoint(Transform.Origin + Vector2.Left * 1000);
-			line.AddPoint(Transform.Origin);
-			line.AddPoint(Transform.Origin + Vector2.Right * 1000);
-			line.DefaultColor = Colors.Red;
-			line.Width = 20;
-			AddChild(line);
-			line.CreateTween().TweenCallback(Callable.From(line.QueueFree)).SetDelay(3);
-			return true;
-		});
+		// Commands.Instance.AddCommand("draw_raycasts", args =>
+		// {
+		// 	// TODO: Doesn't seem to work?
+		// 	Line2D line = new();
+		// 	line.AddPoint(Transform.Origin + Vector2.Left * 1000);
+		// 	line.AddPoint(Transform.Origin);
+		// 	line.AddPoint(Transform.Origin + Vector2.Right * 1000);
+		// 	line.DefaultColor = Colors.Red;
+		// 	line.Width = 20;
+		// 	AddChild(line);
+		// 	line.CreateTween().TweenCallback(Callable.From(line.QueueFree)).SetDelay(3);
+		// 	return true;
+		// });
 	}
 
 	public void AddBaseDamage(float amount) => _baseDmg += amount;
 	
 	public void Damage(float dmg)
 	{
-		_hp -= dmg;
+		_hp = Mathf.Clamp(_hp - dmg, 0, 100);
 		if (_hp <= 0)
 		{
 			// Player died!
@@ -60,8 +60,8 @@ public partial class Player : Node2D
 		var dmgNumber = damageNumber.Instantiate() as DamageNumber;
 		dmgNumber!.velocity = new Vector2(Utility.RNG.RandfRange(-60, 60), Utility.RNG.RandfRange(-60, -20));
 		dmgNumber.angularVelocity = Utility.RNG.RandfRange(-80, 80);
-		dmgNumber.color = Colors.Red;
-		dmgNumber.Text = dmg.ToString("F1");
+		dmgNumber.color = dmg < 0 ? Colors.Green : Colors.Red;
+		dmgNumber.Text = Mathf.Abs(dmg).ToString("F1"); // Abs so bodged healing via negative dmg doesn't show as negative
 		AddChild(dmgNumber);
 		dmgNumber.GlobalPosition = GlobalPosition;
 

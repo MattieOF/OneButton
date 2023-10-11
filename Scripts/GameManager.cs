@@ -5,7 +5,7 @@ public partial class GameManager : Node2D
 {
 	[Export] public Node2D spawnPoints;
 	[Export] public Array<PackedScene> enemies;
-	[Export] public PackedScene timingChallenge;
+	[Export] public PackedScene timingChallenge, gameOverScene;
 	[Export] public HUD hud;
 	[Export] public Vector2 hpRange = new(150, 200);
 	[Export] public float hpIncreasePerSpawn = 10;
@@ -39,7 +39,10 @@ public partial class GameManager : Node2D
 
 	public void PlayerDied()
 	{
-		
+		var globals = GetNode<Globals>("/root/Globals");
+		globals.StopMusic();
+		globals.newScore = _score;
+		GetTree().ChangeSceneToPacked(gameOverScene);
 	}
 
 	public void IncrementStreak()
@@ -54,7 +57,10 @@ public partial class GameManager : Node2D
 			challenge!.Completed += success =>
 			{
 				if (success)
+				{
 					player.AddBaseDamage(30);
+					player.Damage(-10); // Heal player for 10
+				}
 				this.PlaySound2D(success ? successSound : failureSound);
 			};
 		}

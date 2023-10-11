@@ -1,11 +1,14 @@
-[gd_scene load_steps=5 format=3 uid="uid://dtm4hvlq4a3y6"]
+[gd_scene load_steps=6 format=3 uid="uid://dtm4hvlq4a3y6"]
 
 [ext_resource type="PackedScene" uid="uid://dctaq2u0uqb6c" path="res://Scenes/UI/Console.tscn" id="1_0y623"]
+[ext_resource type="Script" path="res://Scripts/Globals.cs" id="1_uylad"]
 [ext_resource type="PackedScene" uid="uid://ytnnw4ifwl3m" path="res://Scenes/UI/FPSCounter.tscn" id="2_faeiq"]
 [ext_resource type="AudioStream" uid="uid://ccgnqyhln6vm" path="res://Sound/543759.beat-tokyodriftin_.mix.wav" id="3_ic3ab"]
 [ext_resource type="Script" path="res://Scripts/LoopingAudioStreamPlayer.cs" id="4_ojf6t"]
 
-[node name="Globals" type="Node"]
+[node name="Globals" type="Node" node_paths=PackedStringArray("music")]
+script = ExtResource("1_uylad")
+music = NodePath("Music")
 
 [node name="Console" parent="." instance=ExtResource("1_0y623")]
 

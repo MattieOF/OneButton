@@ -7,6 +7,7 @@ public partial class Enemy : Node2D
 	
 	[Export] public AudioStream[] punchSounds = new AudioStream[3]; 
 	
+	[Export] public Vector2 damageRange = new(8, 12);
 	[Export] public Vector2 speedRange = new(150, 250);
 	[Export] public Vector2 hpRange = new(150, 250);
 	[Export] public Vector2 attackRange = new(70, 130);
@@ -63,7 +64,7 @@ public partial class Enemy : Node2D
 			{
 				var player = (attackRay.GetCollider() as StaticBody2D)!.FindParent("Player") as Player;
 				this.PlaySound2D(Utility.ChooseRandom(punchSounds));
-				player!.Damage(10);
+				player!.Damage(Utility.RNG.RandfRange(damageRange.X, damageRange.Y));
 				_attackCooldown = Utility.RNG.RandfRange(attackCooldown.X, attackCooldown.Y);
 			}
 		}
