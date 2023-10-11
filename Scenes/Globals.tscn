@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://dtm4hvlq4a3y6"]
+
+[ext_resource type="PackedScene" uid="uid://dctaq2u0uqb6c" path="res://Scenes/UI/Console.tscn" id="1_0y623"]
+[ext_resource type="PackedScene" uid="uid://ytnnw4ifwl3m" path="res://Scenes/UI/FPSCounter.tscn" id="2_faeiq"]
+
+[node name="Globals" type="Node"]
+
+[node name="Console" parent="." instance=ExtResource("1_0y623")]
+
+[node name="FPSCounter" parent="." instance=ExtResource("2_faeiq")]
+visible = false
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 120.0
+offset_bottom = 60.0
