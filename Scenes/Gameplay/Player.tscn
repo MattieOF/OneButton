@@ -17,12 +17,13 @@ corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
-[node name="Player" type="Node2D" node_paths=PackedStringArray("sprite", "body", "shape", "powerBar")]
+[node name="Player" type="Node2D" node_paths=PackedStringArray("sprite", "body", "shape", "powerBar", "healthBar")]
 script = ExtResource("1_cjxlh")
 sprite = NodePath("Sprite")
 body = NodePath("Sprite/Body")
 shape = NodePath("Sprite/Body/Shape")
 powerBar = NodePath("PowerBar")
+healthBar = NodePath("HPBar")
 punchSounds = [ExtResource("2_hgna6"), ExtResource("3_gj63i"), ExtResource("4_amkye")]
 attackRange = 300.0
 
@@ -39,7 +40,7 @@ shape = SubResource("RectangleShape2D_02wo4")
 [node name="FlipSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_tpnjd")
 
-[node name="PowerBar" type="ProgressBar" parent="."]
+[node name="HPBar" type="ProgressBar" parent="."]
 custom_minimum_size = Vector2(100, 0)
 anchors_preset = 8
 anchor_left = 0.5
@@ -50,6 +51,23 @@ offset_left = -50.0
 offset_top = -116.0
 offset_right = 50.0
 offset_bottom = -104.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/fill = SubResource("StyleBoxFlat_iho2s")
+value = 100.0
+show_percentage = false
+
+[node name="PowerBar" type="ProgressBar" parent="."]
+custom_minimum_size = Vector2(100, 0)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.0
+offset_top = 105.0
+offset_right = 50.0
+offset_bottom = 117.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/fill = SubResource("StyleBoxFlat_iho2s")

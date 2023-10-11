@@ -7,21 +7,24 @@ public partial class Player : Node2D
 	[Export] public AnimatedSprite2D sprite;
 	[Export] public StaticBody2D body;
 	[Export] public CollisionShape2D shape;
-	[Export] public ProgressBar powerBar;
+	[Export] public ProgressBar powerBar, healthBar;
 
 	[Export] public AudioStream[] punchSounds = new AudioStream[3]; 
 
 	[Export] public float attackRange = 200;
+	[Export] public float maxHp = 100;
 
 	private Tween _flipTween;
 	private bool _flipped = false;
 	private Vector2 _defaultScale;
 	private AudioStreamPlayer2D _flipSoundPlayer;
 	private float _power = 1;
+	private float _hp;
 
 	public override void _Ready()
 	{
 		_defaultScale = sprite.Scale;
+		_hp = maxHp;
 
 		_flipSoundPlayer = GetNode<AudioStreamPlayer2D>("FlipSound");
 		
@@ -39,9 +42,26 @@ public partial class Player : Node2D
 			return true;
 		});
 	}
+	
+	public void Damage(float dmg)
+	{
+		_hp -= dmg;
+		if (_hp <= 0)
+		{
+			// Player died!
+		}
+
+		var hpPercentage = _hp / maxHp;
+		healthBar.Value = hpPercentage * 100;
+		var stylebox = healthBar.GetThemeStylebox("fill") as StyleBoxFlat;
+		stylebox!.BgColor = Colors.Red.Lerp(Colors.Green, hpPercentage);
+		healthBar.AddThemeStyleboxOverride("fill", stylebox);
+	}
 
 	public override void _Process(double delta)
 	{
+		Damage((float) (delta * 3));
+		
 		if (_power < 1)
 		{
 			_power += (float) delta * 3;
@@ -78,7 +98,7 @@ public partial class Player : Node2D
 			leftDist = GlobalPosition.DistanceSquaredTo(((StaticBody2D)left["collider"].AsGodotObject()).GlobalPosition);
 		if (right.ContainsKey("position"))
 			rightDist = GlobalPosition.DistanceSquaredTo(((StaticBody2D)right["collider"].AsGodotObject()).GlobalPosition);
-		Console.Instance.WriteLine($"Left: {leftDist}, right: {rightDist}");
+		// Console.Instance.WriteLine($"Left: {leftDist}, right: {rightDist}");
 
 		StaticBody2D closest = null;
 		if (leftDist == rightDist && left.ContainsKey("position"))
@@ -93,7 +113,7 @@ public partial class Player : Node2D
 		// in which case, both will equal float.MaxValue.
 		if (leftDist == float.MaxValue && rightDist == float.MaxValue)
 			Flip();
-		else if (closest.GlobalPosition.X < GlobalPosition.X)
+		else if (closest!.GlobalPosition.X < GlobalPosition.X)
 		{
 			if (_flipped)
 				Flip();
@@ -107,10 +127,7 @@ public partial class Player : Node2D
 		// Actually attack the nearest enemy
 		if (closest is not null)
 		{
-			AudioStreamPlayer2D punchPlayer = new AudioStreamPlayer2D();
-			punchPlayer.Stream = Utility.ChooseRandom(punchSounds);
-			AddChild(punchPlayer);
-			
+			this.PlaySound2D(Utility.ChooseRandom(punchSounds));	
 			_power = 0;
 		}
 	}
