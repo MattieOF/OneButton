@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://dliymdfcdalkl"]
+[gd_scene load_steps=4 format=3 uid="uid://dliymdfcdalkl"]
 
 [ext_resource type="SpriteFrames" uid="uid://fq1kdxgfy6ms" path="res://Art/Character/Animations/EnemyAnimations.tres" id="1_8603q"]
 [ext_resource type="Script" path="res://Scripts/Enemy.cs" id="1_ehqxt"]
@@ -6,16 +6,10 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tnq8x"]
 size = Vector2(300, 450)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sxpl0"]
-bg_color = Color(0, 1, 0, 1)
-corner_radius_top_left = 5
-corner_radius_top_right = 5
-corner_radius_bottom_right = 5
-corner_radius_bottom_left = 5
-
-[node name="Enemy" type="Node2D" node_paths=PackedStringArray("healthBar")]
+[node name="Enemy" type="Node2D" node_paths=PackedStringArray("healthBar", "attackRay")]
 script = ExtResource("1_ehqxt")
 healthBar = NodePath("HP")
+attackRay = NodePath("AttackRaycast")
 speedRange = Vector2(50, 120)
 hpRange = Vector2(150, 200)
 
@@ -42,7 +36,6 @@ offset_right = 50.0
 offset_bottom = -104.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/fill = SubResource("StyleBoxFlat_sxpl0")
 value = 100.0
 show_percentage = false
 

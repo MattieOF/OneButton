@@ -3,16 +3,18 @@ using Godot;
 public partial class Enemy : Node2D
 {
 	[Export] public ProgressBar healthBar;
+	[Export] public RayCast2D attackRay;
 	
 	[Export] public Vector2 speedRange = new(150, 250);
 	[Export] public Vector2 hpRange = new(150, 250);
 	[Export] public Vector2 attackRange = new(70, 130);
+	[Export] public Vector2 attackCooldown = new(0.8f, 1.2f);
 
-	public Vector2 dir = Vector2.Right;
-	
+	private Vector2 _dir = Vector2.Right;
 	private float _speed;
 	private float _attackRange;
 	private float _hp, _maxHp;
+	private float _attackCooldown;
 	
 	public override void _Ready()
 	{
@@ -22,13 +24,32 @@ public partial class Enemy : Node2D
 		_attackRange = rng.RandfRange(attackRange.X, attackRange.Y);
 		_maxHp = rng.RandfRange(hpRange.X, hpRange.Y);
 		_hp = _maxHp;
+
+		var hpBarStylebox = new StyleBoxFlat();
+		hpBarStylebox.BgColor = Colors.Green;
+		hpBarStylebox.CornerRadiusBottomLeft = 5;
+		hpBarStylebox.CornerRadiusBottomRight = 5;
+		hpBarStylebox.CornerRadiusTopLeft = 5;
+		hpBarStylebox.CornerRadiusTopRight = 5;
+		healthBar.AddThemeStyleboxOverride("fill", hpBarStylebox);
 	}
 
 	public override void _Process(double delta)
 	{
 		var transform = Transform;
-		transform.Origin += dir * _speed * (float) delta;
+		transform.Origin += _dir * _speed * (float) delta;
 		Transform = transform;
+
+		if (attackRay.IsColliding())
+		{
+			Console.Instance.WriteLine("ye");
+		}
+	}
+
+	public void SetDir(Vector2 newDir)
+	{
+		_dir = newDir;
+		attackRay.TargetPosition = newDir * _attackRange;
 	}
 
 	public void Damage(float dmg)

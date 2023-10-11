@@ -23,7 +23,7 @@ public partial class MenuUI : Control
 		for (int i = 0; i < 3; i++)
 		{
 			Color currentColor = buttons[i].GetThemeColor("font_color");
-			currentColor.V += (float) Math.Min(delta * 2, (i == selected ? (1 - currentColor.V) : (0.6 - currentColor.V)));
+			currentColor.V += (float) Math.Min(delta, (i == selected ? (1 - currentColor.V) : (0.6 - currentColor.V)));
 			buttons[i].AddThemeColorOverride("font_color", currentColor);
 		}
 

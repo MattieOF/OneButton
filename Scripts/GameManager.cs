@@ -13,7 +13,7 @@ public partial class GameManager : Node2D
 	{
 		AddChild(_spawnTimer);
 		_spawnTimer.OneShot = false;
-		_spawnTimer.WaitTime = 4.5;
+		_spawnTimer.WaitTime = 6;
 		_spawnTimer.Timeout += Spawn;
 		_spawnTimer.Start();
 	}
@@ -25,6 +25,6 @@ public partial class GameManager : Node2D
 		AddChild(instantiatedEnemy);
 		var spawnPoint = (Node2D) spawnPoints.GetChildren().PickRandom();
 		instantiatedEnemy!.GlobalPosition = spawnPoint.GlobalPosition;
-		instantiatedEnemy.dir = spawnPoint.Transform.BasisXform(Vector2.Right);
+		instantiatedEnemy.SetDir(spawnPoint.Transform.BasisXform(Vector2.Right));
 	}
 }
