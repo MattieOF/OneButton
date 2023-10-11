@@ -8,6 +8,7 @@ public partial class Player : Node2D
 	[Export] public StaticBody2D body;
 	[Export] public CollisionShape2D shape;
 	[Export] public ProgressBar powerBar, healthBar;
+	[Export] public GameManager gameManager;
 
 	[Export] public AudioStream[] punchSounds = new AudioStream[3]; 
 
@@ -50,6 +51,7 @@ public partial class Player : Node2D
 		if (_hp <= 0)
 		{
 			// Player died!
+			gameManager.PlayerDied();
 		}
 
 		var hpPercentage = _hp / maxHp;
@@ -126,6 +128,11 @@ public partial class Player : Node2D
 		// Actually attack the nearest enemy
 		if (closest is not null)
 		{
+			if (_power >= 0.95f)
+				gameManager.IncrementStreak();
+			else
+				gameManager.ResetStreak();
+			
 			var enemy = closest.GetNode("../..") as Enemy;
 			enemy!.Damage(Utility.EaseInExpo(_power, 15) * (_baseDmg + Utility.RNG.RandiRange(-10, 10)));
 			this.PlaySound2D(Utility.ChooseRandom(punchSounds));

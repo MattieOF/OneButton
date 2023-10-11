@@ -6,20 +6,22 @@
 [ext_resource type="PackedScene" uid="uid://bd2cti82ys8re" path="res://Scenes/Gameplay/Player.tscn" id="4_kd406"]
 [ext_resource type="PackedScene" uid="uid://dliymdfcdalkl" path="res://Scenes/Gameplay/Enemy.tscn" id="5_wxy5h"]
 
-[node name="Game" type="Node2D" node_paths=PackedStringArray("spawnPoints")]
+[node name="Game" type="Node2D" node_paths=PackedStringArray("spawnPoints", "hud")]
 script = ExtResource("1_2egq8")
 spawnPoints = NodePath("SpawnPoints")
 enemies = Array[PackedScene]([ExtResource("5_wxy5h")])
+hud = NodePath("HUD")
 
 [node name="HUD" parent="." instance=ExtResource("1_kuccw")]
 
-[node name="54038-8-ground-hd-png-image-high-quality" type="Sprite2D" parent="."]
+[node name="Floor" type="Sprite2D" parent="."]
 position = Vector2(580, 552)
 scale = Vector2(1.24, 1)
 texture = ExtResource("3_mhrp1")
 
-[node name="Player" parent="." instance=ExtResource("4_kd406")]
+[node name="Player" parent="." node_paths=PackedStringArray("gameManager") instance=ExtResource("4_kd406")]
 position = Vector2(574, 380)
+gameManager = NodePath("..")
 
 [node name="SpawnPoints" type="Node2D" parent="."]
 

@@ -56,7 +56,6 @@ public partial class Enemy : Node2D
 				player!.Damage(10);
 				_attackCooldown = Utility.RNG.RandfRange(attackCooldown.X, attackCooldown.Y);
 			}
-			Console.Instance.WriteLine("ye");
 		}
 	}
 

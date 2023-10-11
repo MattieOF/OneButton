@@ -32,7 +32,7 @@ shape = NodePath("Sprite/Body/Shape")
 powerBar = NodePath("PowerBar")
 healthBar = NodePath("HPBar")
 punchSounds = [ExtResource("2_hgna6"), ExtResource("3_gj63i"), ExtResource("4_amkye")]
-attackRange = 300.0
+attackRange = 180.0
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.6, 0.6)
