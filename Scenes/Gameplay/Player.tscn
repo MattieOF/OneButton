@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bd2cti82ys8re"]
+[gd_scene load_steps=10 format=3 uid="uid://bd2cti82ys8re"]
 
 [ext_resource type="Script" path="res://Scripts/Player.cs" id="1_cjxlh"]
 [ext_resource type="SpriteFrames" uid="uid://dy8o5ewlf4n3s" path="res://Art/Character/Animations/PlayerAnimations.tres" id="2_ajr3d"]
@@ -9,6 +9,13 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_02wo4"]
 size = Vector2(200, 300)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sb5td"]
+bg_color = Color(0, 1, 0, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iho2s"]
 bg_color = Color(0, 1, 0, 1)
@@ -53,7 +60,7 @@ offset_right = 50.0
 offset_bottom = -104.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/fill = SubResource("StyleBoxFlat_iho2s")
+theme_override_styles/fill = SubResource("StyleBoxFlat_sb5td")
 value = 100.0
 show_percentage = false
 
