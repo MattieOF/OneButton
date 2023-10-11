@@ -1,8 +1,12 @@
 using Godot;
 
+// ReSharper disable CompareOfFloatsByEqualityOperator
+
 public partial class Player : Node2D
 {
 	[Export] public AnimatedSprite2D sprite;
+	[Export] public StaticBody2D body;
+	[Export] public CollisionShape2D shape;
 
 	private Tween _flipTween;
 	private bool _flipped = false;
@@ -38,32 +42,42 @@ public partial class Player : Node2D
 		// Cast rays to the left and to the right of the player to check for any enemies
 		var spaceState = GetWorld2D().DirectSpaceState;
 		var query = PhysicsRayQueryParameters2D.Create(Transform.Origin, Transform.Origin + Vector2.Left * 1000);
-		query.HitFromInside = false; // Should prevent hitting the player itself
-		query.CollideWithAreas = true;
+		query.HitFromInside = true;
+		var exclusions = query.Exclude;
+		exclusions.Add(body.GetRid()); // Avoid hitting the player itself
+		query.Exclude = exclusions;
 		var left = spaceState.IntersectRay(query);
-		query = PhysicsRayQueryParameters2D.Create(Transform.Origin, Transform.Origin + Vector2.Right * 1000);
-		query.CollideWithAreas = true;
-		query.HitFromInside = false;
+		
+		query.To = Transform.Origin + Vector2.Right * 1000;
 		var right = spaceState.IntersectRay(query);
 
+		// Calculate the distance to the nearest enemy either side of the player
+		// Distance will equal float.MaxValue if there is no enemy in range
 		float leftDist = float.MaxValue, rightDist = float.MaxValue;
 		if (left.ContainsKey("position"))
-			leftDist = Transform.Origin.DistanceSquaredTo(left["position"].AsVector2());
+			leftDist = GlobalPosition.DistanceSquaredTo(((StaticBody2D)left["collider"].AsGodotObject()).GlobalPosition);
 		if (right.ContainsKey("position"))
-			rightDist = Transform.Origin.DistanceSquaredTo(right["position"].AsVector2());
+			rightDist = GlobalPosition.DistanceSquaredTo(((StaticBody2D)right["collider"].AsGodotObject()).GlobalPosition);
 		Console.Instance.WriteLine($"Left: {leftDist}, right: {rightDist}");
 
+		StaticBody2D closest = null;
+		if (leftDist == rightDist && left.ContainsKey("position"))
+			closest = ((StaticBody2D) left["collider"].AsGodotObject());
+		else if (leftDist < rightDist)
+			closest = ((StaticBody2D) left["collider"].AsGodotObject());
+		else if (rightDist < leftDist)
+			closest = ((StaticBody2D) right["collider"].AsGodotObject());
+		
 		// Tolerance is irrelevant here because we're just testing to see if both missed,
 		// in which case, both will equal float.MaxValue.
-		// ReSharper disable once CompareOfFloatsByEqualityOperator
-		if (leftDist == rightDist)
+		if (leftDist == float.MaxValue && rightDist == float.MaxValue)
 			Flip();
-		else if (leftDist < rightDist)
+		else if (closest.GlobalPosition.X < GlobalPosition.X)
 		{
 			if (_flipped)
-				Flip();	
+				Flip();
 		}
-		else if (leftDist > rightDist)
+		else if (closest.GlobalPosition.X > GlobalPosition.X)
 		{
 			if (!_flipped)
 				Flip();	
