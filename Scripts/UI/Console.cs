@@ -22,7 +22,6 @@ public partial class Console : Window
 		Visible = false;
 	}
 
-	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
 		if (Input.IsActionJustPressed("toggle_console") && !Input.IsKeyPressed(Key.Shift))

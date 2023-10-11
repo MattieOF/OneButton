@@ -25,7 +25,6 @@ animation = &"idle"
 [node name="Body" type="StaticBody2D" parent="Sprite"]
 
 [node name="Shape" type="CollisionShape2D" parent="Sprite/Body"]
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_tnq8x")
 
 [node name="HP" type="ProgressBar" parent="."]

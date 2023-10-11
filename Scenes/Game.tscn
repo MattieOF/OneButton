@@ -1,11 +1,15 @@
-[gd_scene load_steps=5 format=3 uid="uid://bmgc4b57tmbc1"]
+[gd_scene load_steps=6 format=3 uid="uid://bmgc4b57tmbc1"]
 
+[ext_resource type="Script" path="res://Scripts/GameManager.cs" id="1_2egq8"]
 [ext_resource type="PackedScene" uid="uid://cwppnjqorp7ye" path="res://Scenes/UI/HUD.tscn" id="1_kuccw"]
 [ext_resource type="Texture2D" uid="uid://c0joykdfyv1os" path="res://Art/Environment/54038-8-ground-hd-png-image-high-quality.png" id="3_mhrp1"]
 [ext_resource type="PackedScene" uid="uid://bd2cti82ys8re" path="res://Scenes/Gameplay/Player.tscn" id="4_kd406"]
 [ext_resource type="PackedScene" uid="uid://dliymdfcdalkl" path="res://Scenes/Gameplay/Enemy.tscn" id="5_wxy5h"]
 
-[node name="Game" type="Node2D"]
+[node name="Game" type="Node2D" node_paths=PackedStringArray("spawnPoints")]
+script = ExtResource("1_2egq8")
+spawnPoints = NodePath("SpawnPoints")
+enemies = Array[PackedScene]([ExtResource("5_wxy5h")])
 
 [node name="HUD" parent="." instance=ExtResource("1_kuccw")]
 
@@ -17,5 +21,11 @@ texture = ExtResource("3_mhrp1")
 [node name="Player" parent="." instance=ExtResource("4_kd406")]
 position = Vector2(574, 380)
 
-[node name="Enemy" parent="." instance=ExtResource("5_wxy5h")]
-position = Vector2(59, 380)
+[node name="SpawnPoints" type="Node2D" parent="."]
+
+[node name="Left" type="Node2D" parent="SpawnPoints"]
+position = Vector2(-102, 380)
+
+[node name="Right" type="Node2D" parent="SpawnPoints"]
+position = Vector2(1252, 380)
+rotation = -3.14159

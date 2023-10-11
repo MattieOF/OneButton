@@ -7,9 +7,10 @@ public partial class Enemy : Node2D
 	[Export] public Vector2 speedRange = new(150, 250);
 	[Export] public Vector2 hpRange = new(150, 250);
 
+	public Vector2 dir = Vector2.Right;
+	
 	private float _speed;
 	private float _hp, _maxHp;
-	private Vector2 _dir = Vector2.Right;
 	
 	public override void _Ready()
 	{
@@ -23,7 +24,7 @@ public partial class Enemy : Node2D
 	public override void _Process(double delta)
 	{
 		var transform = Transform;
-		transform.Origin += _dir * _speed * (float) delta;
+		transform.Origin += dir * _speed * (float) delta;
 		Transform = transform;
 	}
 
