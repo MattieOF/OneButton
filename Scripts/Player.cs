@@ -7,6 +7,9 @@ public partial class Player : Node2D
 	[Export] public AnimatedSprite2D sprite;
 	[Export] public StaticBody2D body;
 	[Export] public CollisionShape2D shape;
+	[Export] public ProgressBar powerBar;
+
+	[Export] public AudioStream[] punchSounds = new AudioStream[3]; 
 
 	[Export] public float attackRange = 200;
 
@@ -14,6 +17,7 @@ public partial class Player : Node2D
 	private bool _flipped = false;
 	private Vector2 _defaultScale;
 	private AudioStreamPlayer2D _flipSoundPlayer;
+	private float _power = 1;
 
 	public override void _Ready()
 	{
@@ -38,6 +42,18 @@ public partial class Player : Node2D
 
 	public override void _Process(double delta)
 	{
+		if (_power < 1)
+		{
+			_power += (float) delta * 3;
+			_power = Mathf.Min(1, _power);
+			
+			// Update UI
+			powerBar.Value = _power * 100;
+			var stylebox = powerBar.GetThemeStylebox("fill") as StyleBoxFlat;
+			stylebox!.BgColor = Colors.Red.Lerp(Colors.Green, _power);
+			powerBar.AddThemeStyleboxOverride("fill", stylebox);
+		}
+		
 		if (Input.IsActionJustPressed("the_input"))
 			Attack();
 	}
@@ -72,6 +88,7 @@ public partial class Player : Node2D
 		else if (rightDist < leftDist)
 			closest = ((StaticBody2D) right["collider"].AsGodotObject());
 		
+		// Next, see if we need to flip over to face the enemy
 		// Tolerance is irrelevant here because we're just testing to see if both missed,
 		// in which case, both will equal float.MaxValue.
 		if (leftDist == float.MaxValue && rightDist == float.MaxValue)
@@ -85,6 +102,16 @@ public partial class Player : Node2D
 		{
 			if (!_flipped)
 				Flip();	
+		}
+
+		// Actually attack the nearest enemy
+		if (closest is not null)
+		{
+			AudioStreamPlayer2D punchPlayer = new AudioStreamPlayer2D();
+			punchPlayer.Stream = Utility.ChooseRandom(punchSounds);
+			AddChild(punchPlayer);
+			
+			_power = 0;
 		}
 	}
 

@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://cf10quge3cjtu"]
+[gd_scene load_steps=5 format=3 uid="uid://cf10quge3cjtu"]
 
 [ext_resource type="Script" path="res://Scripts/UI/MenuUI.cs" id="1_pfgfv"]
 [ext_resource type="PackedScene" uid="uid://bmgc4b57tmbc1" path="res://Scenes/Game.tscn" id="2_bbscv"]
+[ext_resource type="Theme" uid="uid://dgajli7lqyn44" path="res://Scenes/UI/label_theme.tres" id="3_k43gg"]
 
 [sub_resource type="Curve2D" id="Curve2D_wsqh6"]
 _data = {
@@ -67,3 +68,13 @@ theme_override_font_sizes/font_size = 45
 text = ">"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Title" type="Label" parent="CanvasLayer"]
+offset_left = 774.0
+offset_top = 47.0
+offset_right = 1098.0
+offset_bottom = 133.0
+rotation = 0.127291
+theme = ExtResource("3_k43gg")
+theme_override_font_sizes/font_size = 70
+text = "Karate Kat"

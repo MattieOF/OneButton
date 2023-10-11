@@ -21,7 +21,6 @@ texture = ExtResource("3_mhrp1")
 
 [node name="Player" parent="." instance=ExtResource("4_kd406")]
 position = Vector2(574, 380)
-rotation = 0.0792363
 
 [node name="Enemy" parent="." instance=ExtResource("5_wxy5h")]
 position = Vector2(59, 376)

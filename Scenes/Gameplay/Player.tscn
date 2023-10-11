@@ -1,16 +1,30 @@
-[gd_scene load_steps=5 format=3 uid="uid://bd2cti82ys8re"]
+[gd_scene load_steps=9 format=3 uid="uid://bd2cti82ys8re"]
 
 [ext_resource type="Script" path="res://Scripts/Player.cs" id="1_cjxlh"]
 [ext_resource type="SpriteFrames" uid="uid://dy8o5ewlf4n3s" path="res://Art/Character/Animations/PlayerAnimations.tres" id="2_ajr3d"]
+[ext_resource type="AudioStream" uid="uid://bhm5lnxkpwuj3" path="res://Sound/Punch/Punch1.wav" id="2_hgna6"]
+[ext_resource type="AudioStream" uid="uid://di1x8bs73yjsw" path="res://Sound/Punch/Punch2.wav" id="3_gj63i"]
 [ext_resource type="AudioStream" uid="uid://c52s0u17wwwcr" path="res://Sound/Woosh.wav" id="3_tpnjd"]
+[ext_resource type="AudioStream" uid="uid://bgnfs26d0yn5j" path="res://Sound/Punch/Punch3.wav" id="4_amkye"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_02wo4"]
 size = Vector2(200, 300)
 
-[node name="Player" type="Node2D" node_paths=PackedStringArray("sprite", "body")]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iho2s"]
+bg_color = Color(0, 1, 0, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[node name="Player" type="Node2D" node_paths=PackedStringArray("sprite", "body", "shape", "powerBar")]
 script = ExtResource("1_cjxlh")
 sprite = NodePath("Sprite")
 body = NodePath("Sprite/Body")
+shape = NodePath("Sprite/Body/Shape")
+powerBar = NodePath("PowerBar")
+punchSounds = [ExtResource("2_hgna6"), ExtResource("3_gj63i"), ExtResource("4_amkye")]
+attackRange = 300.0
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.6, 0.6)
@@ -24,3 +38,20 @@ shape = SubResource("RectangleShape2D_02wo4")
 
 [node name="FlipSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_tpnjd")
+
+[node name="PowerBar" type="ProgressBar" parent="."]
+custom_minimum_size = Vector2(100, 0)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.0
+offset_top = -116.0
+offset_right = 50.0
+offset_bottom = -104.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/fill = SubResource("StyleBoxFlat_iho2s")
+value = 100.0
+show_percentage = false
