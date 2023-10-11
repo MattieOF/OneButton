@@ -47,6 +47,11 @@ toggle_console={
 ]
 }
 
+[layer_names]
+
+2d_physics/layer_1="Enemy"
+2d_physics/layer_2="Player"
+
 [rendering]
 
 renderer/rendering_method="gl_compatibility"

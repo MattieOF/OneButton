@@ -6,10 +6,12 @@ public partial class Enemy : Node2D
 	
 	[Export] public Vector2 speedRange = new(150, 250);
 	[Export] public Vector2 hpRange = new(150, 250);
+	[Export] public Vector2 attackRange = new(70, 130);
 
 	public Vector2 dir = Vector2.Right;
 	
 	private float _speed;
+	private float _attackRange;
 	private float _hp, _maxHp;
 	
 	public override void _Ready()
@@ -17,6 +19,7 @@ public partial class Enemy : Node2D
 		base._Ready();
 		var rng = new RandomNumberGenerator();
 		_speed = rng.RandfRange(speedRange.X, speedRange.Y);
+		_attackRange = rng.RandfRange(attackRange.X, attackRange.Y);
 		_maxHp = rng.RandfRange(hpRange.X, hpRange.Y);
 		_hp = _maxHp;
 	}

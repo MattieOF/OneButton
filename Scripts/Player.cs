@@ -20,6 +20,7 @@ public partial class Player : Node2D
 	private AudioStreamPlayer2D _flipSoundPlayer;
 	private float _power = 1;
 	private float _hp;
+	private float _baseDmg = 50;
 
 	public override void _Ready()
 	{
@@ -60,8 +61,6 @@ public partial class Player : Node2D
 
 	public override void _Process(double delta)
 	{
-		Damage((float) (delta * 3));
-		
 		if (_power < 1)
 		{
 			_power += (float) delta * 3;
@@ -127,7 +126,9 @@ public partial class Player : Node2D
 		// Actually attack the nearest enemy
 		if (closest is not null)
 		{
-			this.PlaySound2D(Utility.ChooseRandom(punchSounds));	
+			var enemy = closest.GetNode("../..") as Enemy;
+			enemy!.Damage(Utility.EaseInExpo(_power, 15) * (_baseDmg + Utility.RNG.RandiRange(-10, 10)));
+			this.PlaySound2D(Utility.ChooseRandom(punchSounds));
 			_power = 0;
 		}
 	}

@@ -2,7 +2,7 @@
 
 public static class Utility
 {
-    private static readonly RandomNumberGenerator RNG = new();
+    public static readonly RandomNumberGenerator RNG = new();
     
     public static AudioStream ChooseRandom(AudioStream[] streams) => streams[RNG.RandiRange(0, streams.Length - 1)];
 
@@ -13,5 +13,10 @@ public static class Utility
         punchPlayer.Stream = stream;
         punchPlayer.Play();
         punchPlayer.Finished += () => punchPlayer.QueueFree();
+    }
+
+    public static float EaseInExpo(float value, float expo)
+    {
+        return value == 0 ? 0 : Mathf.Pow(2, expo * value - expo);
     }
 }

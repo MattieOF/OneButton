@@ -13,9 +13,11 @@ corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
-[node name="Enemy" type="Node2D"]
+[node name="Enemy" type="Node2D" node_paths=PackedStringArray("healthBar")]
 script = ExtResource("1_ehqxt")
-speedRange = Vector2(100, 175)
+healthBar = NodePath("HP")
+speedRange = Vector2(50, 120)
+hpRange = Vector2(150, 200)
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.4, 0.4)
@@ -43,3 +45,8 @@ grow_vertical = 2
 theme_override_styles/fill = SubResource("StyleBoxFlat_sxpl0")
 value = 100.0
 show_percentage = false
+
+[node name="AttackRaycast" type="RayCast2D" parent="."]
+target_position = Vector2(0, 0)
+collision_mask = 2
+hit_from_inside = true

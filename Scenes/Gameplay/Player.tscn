@@ -40,6 +40,8 @@ sprite_frames = ExtResource("2_ajr3d")
 animation = &"Idle"
 
 [node name="Body" type="StaticBody2D" parent="Sprite"]
+collision_layer = 2
+collision_mask = 3
 
 [node name="Shape" type="CollisionShape2D" parent="Sprite/Body"]
 shape = SubResource("RectangleShape2D_02wo4")
