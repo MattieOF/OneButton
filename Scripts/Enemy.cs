@@ -17,6 +17,8 @@ public partial class Enemy : Node2D
 	private float _attackRange;
 	private float _hp, _maxHp;
 	private float _attackCooldown;
+
+	public float MaxHP => _maxHp;
 	
 	public override void _Ready()
 	{
@@ -65,16 +67,21 @@ public partial class Enemy : Node2D
 		attackRay.TargetPosition = newDir * _attackRange;
 	}
 
-	public void Damage(float dmg)
+	public bool Damage(float dmg)
 	{
 		_hp -= dmg;
-		if (_hp <= 0)
-			QueueFree();
 
 		var hpPercentage = _hp / _maxHp;
 		healthBar.Value = hpPercentage * 100;
 		var stylebox = healthBar.GetThemeStylebox("fill") as StyleBoxFlat;
 		stylebox!.BgColor = Colors.Red.Lerp(Colors.Green, hpPercentage);
 		healthBar.AddThemeStyleboxOverride("fill", stylebox);
+
+		if (_hp <= 0)
+		{
+			QueueFree();
+			return true;
+		}
+		else return false;
 	}
 }

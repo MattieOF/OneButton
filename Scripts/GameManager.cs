@@ -7,7 +7,7 @@ public partial class GameManager : Node2D
 	[Export] public Array<PackedScene> enemies;
 	[Export] public HUD hud;
 
-	private int _level, _streak;
+	private int _level, _streak, _score;
 	private Timer _spawnTimer = new();
 	
 	public override void _Ready()
@@ -44,5 +44,13 @@ public partial class GameManager : Node2D
 	{
 		_streak = 0;
 		hud.SetStreak(_streak);
+	}
+
+	public int GetStreak() => _streak;
+
+	public void AddScore(int score)
+	{
+		_score += score;
+		hud.AddScore(score, _score);
 	}
 }

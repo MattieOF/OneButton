@@ -145,7 +145,9 @@ public partial class Player : Node2D
 			
 			var enemy = closest.GetNode("../..") as Enemy;
 			var dmg = Utility.EaseInExpo(_power, 15) * (_baseDmg + Utility.RNG.RandfRange(-10, 10));
-			enemy!.Damage(dmg);
+			var enemyHP = enemy!.MaxHP;
+			if (enemy.Damage(dmg))
+				gameManager.AddScore((int) (enemyHP / 10) + gameManager.GetStreak());
 			
 			var dmgNumber = damageNumber.Instantiate() as DamageNumber;
 			dmgNumber!.velocity = new Vector2(Utility.RNG.RandfRange(-60, 60), Utility.RNG.RandfRange(-60, -20));

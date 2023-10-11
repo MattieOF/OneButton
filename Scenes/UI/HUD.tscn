@@ -4,9 +4,10 @@
 [ext_resource type="FontFile" uid="uid://cryrsuf34bgtu" path="res://Art/Fonts/Roboto/Roboto-Regular.ttf" id="2_3fjfi"]
 [ext_resource type="FontFile" uid="uid://mu1cxlxal40c" path="res://Art/Fonts/Roboto/Roboto-Bold.ttf" id="3_d8rnh"]
 
-[node name="HUD" type="CanvasLayer" node_paths=PackedStringArray("scoreText", "streakText")]
+[node name="HUD" type="CanvasLayer" node_paths=PackedStringArray("scoreText", "addedScoreText", "streakText")]
 script = ExtResource("1_strpx")
 scoreText = NodePath("HBoxContainer/ScoreBox/Score")
+addedScoreText = NodePath("HBoxContainer/ScoreBox/AddedScore")
 streakText = NodePath("HBoxContainer/StreakBox/Streak")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
@@ -16,7 +17,7 @@ anchor_right = 0.5
 offset_left = -102.0
 offset_top = 40.0
 offset_right = 102.0
-offset_bottom = 190.0
+offset_bottom = 140.0
 grow_horizontal = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -45,6 +46,14 @@ layout_mode = 2
 theme_override_fonts/font = ExtResource("2_3fjfi")
 theme_override_font_sizes/font_size = 25
 text = "0"
+horizontal_alignment = 1
+
+[node name="AddedScore" type="Label" parent="HBoxContainer/ScoreBox"]
+layout_mode = 2
+size_flags_vertical = 6
+size_flags_stretch_ratio = 0.0
+theme_override_fonts/font = ExtResource("2_3fjfi")
+theme_override_font_sizes/font_size = 15
 horizontal_alignment = 1
 
 [node name="StreakBox" type="VBoxContainer" parent="HBoxContainer"]

@@ -3,15 +3,11 @@ using System;
 
 public partial class HUD : CanvasLayer
 {
-	[Export] public Label scoreText, streakText;
+	[Export] public Label scoreText, addedScoreText, streakText;
 
-	private Tween _streakTween;
+	private Tween _streakTween, _addedScoreTween;
+	private int _addedScore;
 	
-	public override void _Process(double delta)
-	{
-		scoreText.Text = (Convert.ToDouble(scoreText.Text) + delta).ToString("F2");
-	}
-
 	public void SetStreak(int newStreak)
 	{
 		streakText.Text = $"x{newStreak}";
@@ -27,10 +23,32 @@ public partial class HUD : CanvasLayer
 		}
 		else
 		{
+			streakText.AddThemeColorOverride("font_color", Colors.White);
 			_streakTween.TweenMethod(Callable.From<int>(size => streakText.AddThemeFontSizeOverride("font_size", size)), Variant.From(25), Variant.From(40), 0.1f);
 			_streakTween.TweenMethod(Callable.From<int>(size => streakText.AddThemeFontSizeOverride("font_size", size)), Variant.From(40), Variant.From(25), 0.1f).SetDelay(0.1f);
 			// tween.TweenProperty(streakText, new NodePath(Control.PropertyName.Scale), Variant.From(Vector2.One * 1.5f), 0.1f);
 			// tween.TweenProperty(streakText, new NodePath(Control.PropertyName.Scale), Variant.From(Vector2.One), 0.1f).SetDelay(0.1f);
 		}
+	}
+
+	public void AddScore(int newScore, int finalScore)
+	{
+		scoreText.Text = finalScore.ToString();
+		_addedScore += newScore;
+		
+		if (_addedScoreTween is not null && _addedScoreTween.IsRunning())
+			_addedScoreTween.Stop();
+
+		addedScoreText.Text = $"+{_addedScore}";
+		addedScoreText.AddThemeColorOverride("font_color", Colors.White);
+		_addedScoreTween = addedScoreText.CreateTween();
+		_addedScoreTween
+			.TweenMethod(
+				Callable.From<float>(alpha => addedScoreText.AddThemeColorOverride("font_color", new Color(1, 1, 1, alpha))),
+				Variant.From(1.0f), Variant.From(0.0f), 1).SetDelay(1f);
+		_addedScoreTween.TweenCallback(Callable.From(() =>
+		{
+			_addedScore = 0;
+		})).SetDelay(2f);
 	}
 }
