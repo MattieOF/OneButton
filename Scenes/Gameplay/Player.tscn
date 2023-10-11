@@ -1,20 +1,20 @@
 [gd_scene load_steps=5 format=3 uid="uid://bd2cti82ys8re"]
 
-[ext_resource type="Script" path="res://Scripts/Player.cs" id="1_nq5fm"]
-[ext_resource type="SpriteFrames" uid="uid://dy8o5ewlf4n3s" path="res://Art/Character/Animations/PlayerAnimations.tres" id="1_ynn7y"]
-[ext_resource type="AudioStream" uid="uid://c52s0u17wwwcr" path="res://Sound/Woosh.wav" id="3_288kg"]
+[ext_resource type="Script" path="res://Scripts/Player.cs" id="1_cjxlh"]
+[ext_resource type="SpriteFrames" uid="uid://dy8o5ewlf4n3s" path="res://Art/Character/Animations/PlayerAnimations.tres" id="2_ajr3d"]
+[ext_resource type="AudioStream" uid="uid://c52s0u17wwwcr" path="res://Sound/Woosh.wav" id="3_tpnjd"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_02wo4"]
 size = Vector2(200, 300)
 
 [node name="Player" type="Node2D" node_paths=PackedStringArray("sprite", "body")]
-script = ExtResource("1_nq5fm")
+script = ExtResource("1_cjxlh")
 sprite = NodePath("Sprite")
 body = NodePath("Sprite/Body")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.6, 0.6)
-sprite_frames = ExtResource("1_ynn7y")
+sprite_frames = ExtResource("2_ajr3d")
 animation = &"Idle"
 
 [node name="Body" type="StaticBody2D" parent="Sprite"]
@@ -23,4 +23,4 @@ animation = &"Idle"
 shape = SubResource("RectangleShape2D_02wo4")
 
 [node name="FlipSound" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("3_288kg")
+stream = ExtResource("3_tpnjd")

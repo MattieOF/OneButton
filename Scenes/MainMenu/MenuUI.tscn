@@ -1,0 +1,69 @@
+[gd_scene load_steps=4 format=3 uid="uid://cf10quge3cjtu"]
+
+[ext_resource type="Script" path="res://Scripts/UI/MenuUI.cs" id="1_pfgfv"]
+[ext_resource type="PackedScene" uid="uid://bmgc4b57tmbc1" path="res://Scenes/Game.tscn" id="2_bbscv"]
+
+[sub_resource type="Curve2D" id="Curve2D_wsqh6"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -12, 7, 0, 0, 0, 0, -12, 180, 0, 0, 0, 0, -12, 7)
+}
+point_count = 3
+
+[node name="MenuUI" type="Control" node_paths=PackedStringArray("buttons", "pointer", "path")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_pfgfv")
+buttons = [NodePath("CanvasLayer/VBoxContainer/Start"), NodePath("CanvasLayer/VBoxContainer/Help"), NodePath("CanvasLayer/VBoxContainer/Quit")]
+pointer = NodePath("CanvasLayer/Pointer")
+path = NodePath("CanvasLayer/VBoxContainer/Path")
+gameScene = ExtResource("2_bbscv")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer"]
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 200.0
+offset_top = -91.0
+offset_right = 326.0
+offset_bottom = 91.0
+grow_vertical = 2
+alignment = 1
+
+[node name="Path" type="Path2D" parent="CanvasLayer/VBoxContainer"]
+position = Vector2(-30, 0)
+curve = SubResource("Curve2D_wsqh6")
+
+[node name="Start" type="Label" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.545098, 0.545098, 0.545098, 1)
+theme_override_font_sizes/font_size = 40
+text = "Start"
+
+[node name="Help" type="Label" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.545098, 0.545098, 0.545098, 1)
+theme_override_font_sizes/font_size = 40
+text = "Help
+"
+
+[node name="Quit" type="Label" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.545098, 0.545098, 0.545098, 1)
+theme_override_font_sizes/font_size = 40
+text = "Quit"
+
+[node name="Pointer" type="Label" parent="CanvasLayer"]
+offset_left = -20.0
+offset_top = -33.0
+offset_right = 20.0
+offset_bottom = 33.0
+theme_override_font_sizes/font_size = 45
+text = ">"
+horizontal_alignment = 1
+vertical_alignment = 1
