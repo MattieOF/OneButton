@@ -1,15 +1,27 @@
-[gd_scene load_steps=4 format=3 uid="uid://bmgc4b57tmbc1"]
+[gd_scene load_steps=6 format=3 uid="uid://bmgc4b57tmbc1"]
 
 [ext_resource type="PackedScene" uid="uid://cwppnjqorp7ye" path="res://Scenes/UI/HUD.tscn" id="1_3ie52"]
 [ext_resource type="PackedScene" uid="uid://bd2cti82ys8re" path="res://Scenes/Player.tscn" id="2_l1o8r"]
 [ext_resource type="PackedScene" uid="uid://dctaq2u0uqb6c" path="res://Scenes/UI/Console.tscn" id="3_b60xm"]
+[ext_resource type="Texture2D" uid="uid://c0joykdfyv1os" path="res://Art/Environment/54038-8-ground-hd-png-image-high-quality.png" id="4_anmgk"]
+[ext_resource type="PackedScene" uid="uid://dliymdfcdalkl" path="res://Scenes/Enemy.tscn" id="5_k6ps7"]
 
 [node name="Game" type="Node2D"]
 
 [node name="HUD" parent="." instance=ExtResource("1_3ie52")]
 
-[node name="Player" parent="." instance=ExtResource("2_l1o8r")]
-position = Vector2(574, 350)
-
 [node name="Console" parent="." instance=ExtResource("3_b60xm")]
 initial_position = 1
+visible = false
+
+[node name="54038-8-ground-hd-png-image-high-quality" type="Sprite2D" parent="."]
+position = Vector2(580, 552)
+scale = Vector2(1.24, 1)
+texture = ExtResource("4_anmgk")
+
+[node name="Player" parent="." instance=ExtResource("2_l1o8r")]
+position = Vector2(574, 380)
+rotation = 0.0792363
+
+[node name="Enemy" parent="." instance=ExtResource("5_k6ps7")]
+position = Vector2(59, 376)

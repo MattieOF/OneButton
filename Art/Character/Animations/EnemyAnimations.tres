@@ -1,0 +1,14 @@
+[gd_resource type="SpriteFrames" load_steps=2 format=3 uid="uid://fq1kdxgfy6ms"]
+
+[ext_resource type="Texture2D" uid="uid://dqg3hm8aav8ak" path="res://Art/Character/TempKarateKat2.png" id="1_ah8d5"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_ah8d5")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
