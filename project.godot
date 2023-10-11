@@ -10,7 +10,8 @@ config_version=5
 
 [application]
 
-config/name="One Button"
+config/name="Karate Kat"
+config/description="A game with only one input for the first project of UoP game dev :)"
 run/main_scene="res://Scenes/MainMenu/Menu.tscn"
 config/features=PackedStringArray("4.1", "C#", "GL Compatibility")
 config/icon="res://icon.svg"
@@ -26,7 +27,7 @@ window/vsync/vsync_mode=0
 
 [dotnet]
 
-project/assembly_name="One Button"
+project/assembly_name="KarateKat"
 
 [input]
 
