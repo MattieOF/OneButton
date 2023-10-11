@@ -5,6 +5,8 @@ public partial class Enemy : Node2D
 	[Export] public ProgressBar healthBar;
 	[Export] public RayCast2D attackRay;
 	
+	[Export] public AudioStream[] punchSounds = new AudioStream[3]; 
+	
 	[Export] public Vector2 speedRange = new(150, 250);
 	[Export] public Vector2 hpRange = new(150, 250);
 	[Export] public Vector2 attackRange = new(70, 130);
@@ -24,6 +26,7 @@ public partial class Enemy : Node2D
 		_attackRange = rng.RandfRange(attackRange.X, attackRange.Y);
 		_maxHp = rng.RandfRange(hpRange.X, hpRange.Y);
 		_hp = _maxHp;
+		_attackCooldown = attackCooldown.Y;
 
 		var hpBarStylebox = new StyleBoxFlat();
 		hpBarStylebox.BgColor = Colors.Green;
@@ -36,12 +39,23 @@ public partial class Enemy : Node2D
 
 	public override void _Process(double delta)
 	{
-		var transform = Transform;
-		transform.Origin += _dir * _speed * (float) delta;
-		Transform = transform;
+		if (!attackRay.IsColliding())
+		{
+			var transform = Transform;
+			transform.Origin += _dir * _speed * (float) delta;
+			Transform = transform;
+		}
 
 		if (attackRay.IsColliding())
 		{
+			_attackCooldown = (float) Mathf.Max(0, _attackCooldown - delta);
+			if (_attackCooldown <= 0)
+			{
+				var player = (attackRay.GetCollider() as StaticBody2D)!.FindParent("Player") as Player;
+				this.PlaySound2D(Utility.ChooseRandom(punchSounds));
+				player!.Damage(10);
+				_attackCooldown = Utility.RNG.RandfRange(attackCooldown.X, attackCooldown.Y);
+			}
 			Console.Instance.WriteLine("ye");
 		}
 	}

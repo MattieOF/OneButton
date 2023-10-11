@@ -1,7 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://dliymdfcdalkl"]
+[gd_scene load_steps=7 format=3 uid="uid://dliymdfcdalkl"]
 
 [ext_resource type="SpriteFrames" uid="uid://fq1kdxgfy6ms" path="res://Art/Character/Animations/EnemyAnimations.tres" id="1_8603q"]
 [ext_resource type="Script" path="res://Scripts/Enemy.cs" id="1_ehqxt"]
+[ext_resource type="AudioStream" uid="uid://bhm5lnxkpwuj3" path="res://Sound/Punch/Punch1.wav" id="2_pva43"]
+[ext_resource type="AudioStream" uid="uid://di1x8bs73yjsw" path="res://Sound/Punch/Punch2.wav" id="3_uhdwd"]
+[ext_resource type="AudioStream" uid="uid://bgnfs26d0yn5j" path="res://Sound/Punch/Punch3.wav" id="4_05hw0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tnq8x"]
 size = Vector2(300, 450)
@@ -10,6 +13,7 @@ size = Vector2(300, 450)
 script = ExtResource("1_ehqxt")
 healthBar = NodePath("HP")
 attackRay = NodePath("AttackRaycast")
+punchSounds = [ExtResource("2_pva43"), ExtResource("3_uhdwd"), ExtResource("4_05hw0")]
 speedRange = Vector2(50, 120)
 hpRange = Vector2(150, 200)
 
