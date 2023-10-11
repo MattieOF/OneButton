@@ -1,0 +1,72 @@
+[gd_scene load_steps=3 format=3 uid="uid://d04sd14853fow"]
+
+[ext_resource type="Script" path="res://Scripts/UI/TimingChallenge.cs" id="1_oksm0"]
+[ext_resource type="FontFile" uid="uid://cryrsuf34bgtu" path="res://Art/Fonts/Roboto/Roboto-Regular.ttf" id="2_rw5t1"]
+
+[node name="TimingChallenge" type="CanvasLayer" node_paths=PackedStringArray("theMark", "cursor")]
+script = ExtResource("1_oksm0")
+theMark = NodePath("BG/TheMark")
+cursor = NodePath("BG/Cursor")
+
+[node name="Title" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -145.0
+offset_top = -106.0
+offset_right = 146.0
+offset_bottom = -80.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = -0.00396069
+theme_override_fonts/font = ExtResource("2_rw5t1")
+text = "HIT THE MARK FOR A DAMAGE BOOST"
+
+[node name="BG" type="ColorRect" parent="."]
+custom_minimum_size = Vector2(0, 30)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -250.0
+offset_top = -74.0
+offset_right = 250.001
+offset_bottom = -44.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 0
+
+[node name="TheMark" type="ColorRect" parent="BG"]
+custom_minimum_size = Vector2(50, 30)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -25.0
+offset_top = -15.0
+offset_right = 25.0
+offset_bottom = 15.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 0, 0, 1)
+
+[node name="Cursor" type="ColorRect" parent="BG"]
+custom_minimum_size = Vector2(7, 30)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -250.0
+offset_top = -15.0
+offset_right = -243.0
+offset_bottom = 15.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)

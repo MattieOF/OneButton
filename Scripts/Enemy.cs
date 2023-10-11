@@ -39,6 +39,14 @@ public partial class Enemy : Node2D
 		healthBar.AddThemeStyleboxOverride("fill", hpBarStylebox);
 	}
 
+	public void SetHPRange(Vector2 newHpRange, bool resetHp = true)
+	{
+		hpRange = newHpRange;
+		if (!resetHp) return;
+		_maxHp = Utility.RNG.RandfRange(hpRange.X, hpRange.Y);
+		_hp = _maxHp;
+	}
+
 	public override void _Process(double delta)
 	{
 		if (!attackRay.IsColliding())

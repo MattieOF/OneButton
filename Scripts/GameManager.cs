@@ -5,7 +5,12 @@ public partial class GameManager : Node2D
 {
 	[Export] public Node2D spawnPoints;
 	[Export] public Array<PackedScene> enemies;
+	[Export] public PackedScene timingChallenge;
 	[Export] public HUD hud;
+	[Export] public Vector2 hpRange = new(150, 200);
+	[Export] public float hpIncreasePerSpawn = 10;
+	[Export] public Player player;
+	[Export] public AudioStream successSound, failureSound;
 
 	private int _level, _streak, _score;
 	private Timer _spawnTimer = new();
@@ -23,10 +28,13 @@ public partial class GameManager : Node2D
 	{
 		var enemy = enemies.PickRandom();
 		var instantiatedEnemy = enemy.Instantiate() as Enemy;
+		instantiatedEnemy!.SetHPRange(hpRange, true);
 		AddChild(instantiatedEnemy);
 		var spawnPoint = (Node2D) spawnPoints.GetChildren().PickRandom();
-		instantiatedEnemy!.GlobalPosition = spawnPoint.GlobalPosition;
+		instantiatedEnemy.GlobalPosition = spawnPoint.GlobalPosition;
 		instantiatedEnemy.SetDir(spawnPoint.Transform.BasisXform(Vector2.Right));
+		hpRange.X += hpIncreasePerSpawn;
+		hpRange.Y += hpIncreasePerSpawn;
 	}
 
 	public void PlayerDied()
@@ -38,6 +46,18 @@ public partial class GameManager : Node2D
 	{
 		_streak++;
 		hud.SetStreak(_streak);
+
+		if (_streak != 0 && _streak % 15 == 0)
+		{
+			var challenge = timingChallenge.Instantiate() as TimingChallenge;
+			AddChild(challenge);
+			challenge!.Completed += success =>
+			{
+				if (success)
+					player.AddBaseDamage(30);
+				this.PlaySound2D(success ? successSound : failureSound);
+			};
+		}
 	}
 
 	public void ResetStreak()

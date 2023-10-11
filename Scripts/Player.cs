@@ -1,4 +1,3 @@
-using System.Globalization;
 using Godot;
 
 // ReSharper disable CompareOfFloatsByEqualityOperator
@@ -46,6 +45,8 @@ public partial class Player : Node2D
 			return true;
 		});
 	}
+
+	public void AddBaseDamage(float amount) => _baseDmg += amount;
 	
 	public void Damage(float dmg)
 	{
