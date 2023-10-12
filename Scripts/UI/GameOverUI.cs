@@ -20,8 +20,6 @@ public partial class GameOverUI : CanvasLayer
 
         var globals = GetNode<Globals>("/root/Globals");
         
-        GD.Print(FileAccess.GetOpenError());
-
         var contents = highscore.GetAsText();
         if (string.IsNullOrWhiteSpace(contents))
             contents = "0";

@@ -14,7 +14,6 @@ script = ExtResource("1_ehqxt")
 healthBar = NodePath("HP")
 attackRay = NodePath("AttackRaycast")
 punchSounds = [ExtResource("2_pva43"), ExtResource("3_uhdwd"), ExtResource("4_05hw0")]
-damageRange = Vector2(100, 100)
 speedRange = Vector2(50, 120)
 hpRange = Vector2(150, 200)
 

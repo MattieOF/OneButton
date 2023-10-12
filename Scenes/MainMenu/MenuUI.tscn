@@ -1,8 +1,12 @@
-[gd_scene load_steps=5 format=3 uid="uid://cf10quge3cjtu"]
+[gd_scene load_steps=9 format=3 uid="uid://cf10quge3cjtu"]
 
 [ext_resource type="Script" path="res://Scripts/UI/MenuUI.cs" id="1_pfgfv"]
 [ext_resource type="PackedScene" uid="uid://bmgc4b57tmbc1" path="res://Scenes/Game.tscn" id="2_bbscv"]
 [ext_resource type="Theme" uid="uid://dgajli7lqyn44" path="res://Scenes/UI/label_theme.tres" id="3_k43gg"]
+[ext_resource type="FontFile" uid="uid://cryrsuf34bgtu" path="res://Art/Fonts/Roboto/Roboto-Regular.ttf" id="4_cmmnp"]
+[ext_resource type="FontFile" uid="uid://mu1cxlxal40c" path="res://Art/Fonts/Roboto/Roboto-Bold.ttf" id="5_xyy4p"]
+[ext_resource type="FontFile" uid="uid://dhj2bjpg8narn" path="res://Art/Fonts/Roboto/Roboto-Italic.ttf" id="6_hsrs8"]
+[ext_resource type="FontFile" uid="uid://e27tnhgvq05l" path="res://Art/Fonts/Roboto/Roboto-BoldItalic.ttf" id="7_mq8vy"]
 
 [sub_resource type="Curve2D" id="Curve2D_wsqh6"]
 _data = {
@@ -10,7 +14,7 @@ _data = {
 }
 point_count = 3
 
-[node name="MenuUI" type="Control" node_paths=PackedStringArray("buttons", "pointer", "path")]
+[node name="MenuUI" type="Control" node_paths=PackedStringArray("buttons", "pointer", "path", "helpText")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -22,6 +26,7 @@ buttons = [NodePath("CanvasLayer/VBoxContainer/Start"), NodePath("CanvasLayer/VB
 pointer = NodePath("CanvasLayer/Pointer")
 path = NodePath("CanvasLayer/VBoxContainer/Path")
 gameScene = ExtResource("2_bbscv")
+helpText = NodePath("CanvasLayer/Help")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -78,3 +83,34 @@ rotation = 0.127291
 theme = ExtResource("3_k43gg")
 theme_override_font_sizes/font_size = 70
 text = "Karate Kat"
+
+[node name="Help" type="RichTextLabel" parent="CanvasLayer"]
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 48.0
+offset_top = -143.0
+offset_right = 451.0
+offset_bottom = 199.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("4_cmmnp")
+theme_override_fonts/bold_font = ExtResource("5_xyy4p")
+theme_override_fonts/italics_font = ExtResource("6_hsrs8")
+theme_override_fonts/bold_italics_font = ExtResource("7_mq8vy")
+bbcode_enabled = true
+text = "Welcome to [b]Karate Kat[/b]!
+
+This game only has one control: [i]the space bar.[/i]
+Use it to [b]attack the nearest enemy[/b]! 
+
+Your slaps have [b]power[/b] - shown by the bar below your cat - and slapping before being fully charged will both have signficantly less damage and ruin your [b]streak[/b], so try to avoid it!
+
+If your streak gets high enough, you'll have a chance to play a [b]timing minigame[/b], and if you win, you get a [b]major, permanent, stacking damage boost[/b].
+
+[b]Enemies gain more health over time[/b], so use this to your advantage.
+
+Press [b][i]the[/i][/b] button to go back."
+fit_content = true

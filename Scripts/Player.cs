@@ -31,6 +31,10 @@ public partial class Player : Node2D
 
 		_flipSoundPlayer = GetNode<AudioStreamPlayer2D>("FlipSound");
 		
+		var stylebox = powerBar.GetThemeStylebox("fill") as StyleBoxFlat;
+		stylebox!.BgColor = Colors.Green;
+		powerBar.AddThemeStyleboxOverride("fill", stylebox);
+		
 		// Commands.Instance.AddCommand("draw_raycasts", args =>
 		// {
 		// 	// TODO: Doesn't seem to work?

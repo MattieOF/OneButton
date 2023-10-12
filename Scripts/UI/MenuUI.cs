@@ -7,8 +7,10 @@ public partial class MenuUI : Control
 	[Export] public Label pointer;
 	[Export] public Path2D path;
 	[Export] public PackedScene gameScene;
+	[Export] public RichTextLabel helpText;
 
 	private double _selection = 0;
+	private bool _helpOpen = false;
 	
 	public override void _Process(double delta)
 	{
@@ -23,22 +25,34 @@ public partial class MenuUI : Control
 		for (int i = 0; i < 3; i++)
 		{
 			Color currentColor = buttons[i].GetThemeColor("font_color");
-			currentColor.V += (float) Math.Min(delta, (i == selected ? (1 - currentColor.V) : (0.6 - currentColor.V)));
+			currentColor.V += (float) Math.Min(delta, (i == selected && !_helpOpen ? (1 - currentColor.V) : (0.6 - currentColor.V)));
 			buttons[i].AddThemeColorOverride("font_color", currentColor);
 		}
 
 		if (Input.IsActionJustPressed("the_input"))
 		{
-			switch (selected)
+			if (_helpOpen)
 			{
-				case 0:
-					GetTree().ChangeSceneToPacked(gameScene);
-					break;
-				case 1:
-					break;
-				case 2:
-					GetTree().Quit();
-					break;
+				helpText.CreateTween().TweenProperty(helpText, new NodePath(Control.PropertyName.Position), Variant.From(new Vector2(1200, helpText.Position.Y)), 1f);
+				_helpOpen = false;
+				pointer.Visible = true;
+			}
+			else
+			{
+				switch (selected)
+				{
+					case 0:
+						GetTree().ChangeSceneToPacked(gameScene);
+						break;
+					case 1:
+						_helpOpen = true;
+						helpText.CreateTween().TweenProperty(helpText, new NodePath(Control.PropertyName.Position), Variant.From(new Vector2(700, helpText.Position.Y)), 1f);
+						pointer.Visible = false;
+						break;
+					case 2:
+						GetTree().Quit();
+						break;
+				}
 			}
 		}
 	}
