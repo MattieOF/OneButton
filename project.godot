@@ -29,6 +29,10 @@ window/vsync/vsync_mode=0
 
 project/assembly_name="KarateKat"
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/better_top_bar/plugin.cfg", "res://addons/horizontal_file_system/plugin.cfg")
+
 [input]
 
 the_input={
@@ -56,4 +60,4 @@ toggle_console={
 
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
-environment/defaults/default_clear_color=Color(0.611765, 0.67451, 0.976471, 1)
+environment/defaults/default_clear_color=Color(0.0901961, 0.262745, 0.368627, 1)

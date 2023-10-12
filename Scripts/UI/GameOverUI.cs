@@ -30,9 +30,13 @@ public partial class GameOverUI : CanvasLayer
         scoreText.Text = $"Highscore: {contents}\nFinal score: {globals.newScore}{(isNewHighscore ? " (New highscore!)" : "")}";
         
         highscore.Close();
-        highscore = FileAccess.Open("user://highscore.save", FileAccess.ModeFlags.Write);
-        highscore.StoreString(globals.newScore.ToString());
-        highscore.Close();
+
+        if (isNewHighscore)
+        {
+            highscore = FileAccess.Open("user://highscore.save", FileAccess.ModeFlags.Write);
+            highscore.StoreString(globals.newScore.ToString());
+            highscore.Close();
+        }
     }
 
     public override void _Process(double delta)
