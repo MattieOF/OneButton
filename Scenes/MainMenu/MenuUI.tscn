@@ -30,7 +30,7 @@ path = NodePath("CanvasLayer/VBoxContainer/Path")
 gameScene = ExtResource("2_bbscv")
 helpText = NodePath("CanvasLayer/Help")
 cat = NodePath("CanvasLayer/Kat")
-catStart = Vector2(1035, 475)
+catStart = Vector2(1039, 607)
 catEnd = Vector2(1035, 850)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
@@ -154,12 +154,12 @@ theme_override_fonts/bold_font = ExtResource("5_xyy4p")
 theme_override_fonts/italics_font = ExtResource("6_hsrs8")
 theme_override_fonts/bold_italics_font = ExtResource("7_mq8vy")
 bbcode_enabled = true
-text = "Welcome to [b]Karate Kat[/b]!
+text = "Welcome to [b]Karate Kat[/b]! You are [b]Mr Meowgi[/b], and you're on a hunt!
 
 This game only has one control: [i]the space bar.[/i]
 Use it to [b]attack the nearest enemy[/b]! 
 
-Your slaps have [b]power[/b] - shown by the bar below your cat - and slapping before being fully charged will both have significantly less damage and ruin your [b]streak[/b], so try to avoid it!
+Meowgi's slaps have [b]power[/b] - shown by the bar below your cat - and slapping before being fully charged will both have significantly less damage and ruin your [b]streak[/b], so try to avoid it!
 
 If your streak gets high enough, you'll have a chance to play a [b]timing minigame[/b], and if you win, you get a [b]major, permanent, stacking damage boost[/b].
 
@@ -169,6 +169,6 @@ Press [b][i]the[/i][/b] button to go back."
 fit_content = true
 
 [node name="Kat" type="Sprite2D" parent="CanvasLayer"]
-position = Vector2(1035, 475)
+position = Vector2(1039, 607)
 rotation = -0.762987
 texture = ExtResource("8_111ly")
