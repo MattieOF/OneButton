@@ -35,6 +35,9 @@ public partial class Player : Node2D
 		stylebox!.BgColor = Colors.Green;
 		powerBar.AddThemeStyleboxOverride("fill", stylebox);
 		
+		sprite.Play("Idle");
+		sprite.AnimationLooped += () => sprite.Play("Idle");
+
 		// Commands.Instance.AddCommand("draw_raycasts", args =>
 		// {
 		// 	// TODO: Doesn't seem to work?
@@ -106,7 +109,7 @@ public partial class Player : Node2D
 		var left = spaceState.IntersectRay(query);
 		query.To = Transform.Origin + Vector2.Right * attackRange;
 		var right = spaceState.IntersectRay(query);
-
+		
 		// Calculate the distance to the nearest enemy either side of the player
 		// Distance will equal float.MaxValue if there is no enemy in range
 		float leftDist = float.MaxValue, rightDist = float.MaxValue;
@@ -143,6 +146,8 @@ public partial class Player : Node2D
 		// Actually attack the nearest enemy
 		if (closest is not null)
 		{
+			sprite.Play(Utility.CoinFlip() ? "Punch1" : "Punch2");
+			
 			if (_power >= 0.95f)
 				gameManager.IncrementStreak();
 			else

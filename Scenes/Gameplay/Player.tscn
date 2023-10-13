@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://ctulkottdtbc7" path="res://Scenes/UI/DamageNumber.tscn" id="5_3xqtl"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_02wo4"]
-size = Vector2(200, 300)
+size = Vector2(81.6667, 226.667)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sb5td"]
 bg_color = Color(0, 1, 0, 1)
@@ -37,15 +37,17 @@ damageNumber = ExtResource("5_3xqtl")
 attackRange = 180.0
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
-scale = Vector2(0.6, 0.6)
+scale = Vector2(0.8, 0.8)
 sprite_frames = ExtResource("2_ajr3d")
 animation = &"Idle"
+flip_h = true
 
 [node name="Body" type="StaticBody2D" parent="Sprite"]
 collision_layer = 2
 collision_mask = 3
 
 [node name="Shape" type="CollisionShape2D" parent="Sprite/Body"]
+position = Vector2(7.5, -30)
 shape = SubResource("RectangleShape2D_02wo4")
 
 [node name="FlipSound" type="AudioStreamPlayer2D" parent="."]
@@ -59,9 +61,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -50.0
-offset_top = -116.0
+offset_top = -134.0
 offset_right = 50.0
-offset_bottom = -104.0
+offset_bottom = -122.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/fill = SubResource("StyleBoxFlat_sb5td")
@@ -76,9 +78,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -50.0
-offset_top = 105.0
+offset_top = 68.0
 offset_right = 50.0
-offset_bottom = 117.0
+offset_bottom = 80.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/fill = SubResource("StyleBoxFlat_iho2s")

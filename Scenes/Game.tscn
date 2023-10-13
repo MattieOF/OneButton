@@ -42,7 +42,7 @@ scale = Vector2(1.24, 1)
 texture = ExtResource("9_ah35e")
 
 [node name="Player" parent="." node_paths=PackedStringArray("gameManager") instance=ExtResource("4_kd406")]
-position = Vector2(574, 380)
+position = Vector2(574, 410)
 gameManager = NodePath("..")
 
 [node name="SpawnPoints" type="Node2D" parent="."]

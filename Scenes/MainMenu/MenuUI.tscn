@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://cf10quge3cjtu"]
+[gd_scene load_steps=11 format=3 uid="uid://cf10quge3cjtu"]
 
 [ext_resource type="Script" path="res://Scripts/UI/MenuUI.cs" id="1_pfgfv"]
 [ext_resource type="PackedScene" uid="uid://bmgc4b57tmbc1" path="res://Scenes/Game.tscn" id="2_bbscv"]
@@ -8,6 +8,7 @@
 [ext_resource type="FontFile" uid="uid://dhj2bjpg8narn" path="res://Art/Fonts/Roboto/Roboto-Italic.ttf" id="6_hsrs8"]
 [ext_resource type="FontFile" uid="uid://e27tnhgvq05l" path="res://Art/Fonts/Roboto/Roboto-BoldItalic.ttf" id="7_mq8vy"]
 [ext_resource type="Texture2D" uid="uid://br48arpvbhc64" path="res://Art/Character/TempKarateKat.png" id="8_111ly"]
+[ext_resource type="Texture2D" uid="uid://c5apkrye2s7rn" path="res://Art/TitleScreen.png" id="9_ueq6j"]
 
 [sub_resource type="Curve2D" id="Curve2D_wsqh6"]
 _data = {
@@ -38,10 +39,10 @@ catEnd = Vector2(1035, 850)
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
-offset_left = 215.0
-offset_top = -75.0
-offset_right = 341.0
-offset_bottom = 107.0
+offset_left = 293.0
+offset_top = 15.0
+offset_right = 419.0
+offset_bottom = 197.0
 grow_vertical = 2
 alignment = 1
 
@@ -72,10 +73,10 @@ text = "Quit"
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_left = 219.0
-offset_top = -190.0
-offset_right = 402.0
-offset_bottom = -160.0
+offset_left = 297.0
+offset_top = -100.0
+offset_right = 480.0
+offset_bottom = -70.0
 grow_vertical = 0
 
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer/HBoxContainer"]
@@ -119,16 +120,21 @@ text = ">"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="TitleScreen" type="Sprite2D" parent="CanvasLayer"]
+position = Vector2(350, 146)
+texture = ExtResource("9_ueq6j")
+
 [node name="Title" type="Label" parent="CanvasLayer"]
-offset_left = 774.0
-offset_top = 47.0
-offset_right = 1098.0
-offset_bottom = 133.0
-rotation = 0.127291
+offset_left = 189.0
+offset_top = 29.0
+offset_right = 513.0
+offset_bottom = 115.0
 theme = ExtResource("3_k43gg")
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 70
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 50
 text = "Karate Kat"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Help" type="RichTextLabel" parent="CanvasLayer"]
 anchors_preset = 6

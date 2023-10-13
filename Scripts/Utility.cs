@@ -19,4 +19,6 @@ public static class Utility
     {
         return value == 0 ? 0 : Mathf.Pow(2, expo * value - expo);
     }
+
+    public static bool CoinFlip(float chance = 0.5f) => RNG.Randf() <= chance;
 }

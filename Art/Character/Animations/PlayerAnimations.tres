@@ -1,14 +1,97 @@
-[gd_resource type="SpriteFrames" load_steps=2 format=3 uid="uid://dy8o5ewlf4n3s"]
+[gd_resource type="SpriteFrames" load_steps=19 format=3 uid="uid://dy8o5ewlf4n3s"]
 
-[ext_resource type="Texture2D" uid="uid://br48arpvbhc64" path="res://Art/Character/TempKarateKat.png" id="1_24n0w"]
+[ext_resource type="Texture2D" uid="uid://utc85o0mov8c" path="res://Art/Character/MrMeowgi/Idle/frame_0_delay-0.13s.png" id="1_cnrr7"]
+[ext_resource type="Texture2D" uid="uid://bd6f12q542rlg" path="res://Art/Character/MrMeowgi/Idle/frame_1_delay-0.13s.png" id="2_e5p1i"]
+[ext_resource type="Texture2D" uid="uid://bem00dnenlfvx" path="res://Art/Character/MrMeowgi/Idle/frame_2_delay-0.13s.png" id="3_7cj7l"]
+[ext_resource type="Texture2D" uid="uid://0gu3lwe1r4iu" path="res://Art/Character/MrMeowgi/Idle/frame_3_delay-0.13s.png" id="4_qhucl"]
+[ext_resource type="Texture2D" uid="uid://ccxkq00pshkag" path="res://Art/Character/MrMeowgi/Walk/frame_0_delay-0.13s.png" id="5_dsynt"]
+[ext_resource type="Texture2D" uid="uid://bef518xwawmjp" path="res://Art/Character/MrMeowgi/Punch1/frame_0_delay-0.13s.png" id="5_yj3dw"]
+[ext_resource type="Texture2D" uid="uid://rgoegebfasaw" path="res://Art/Character/MrMeowgi/Walk/frame_1_delay-0.13s.png" id="6_8532s"]
+[ext_resource type="Texture2D" uid="uid://bbmd23l32cn43" path="res://Art/Character/MrMeowgi/Punch1/frame_1_delay-0.13s.png" id="6_fx243"]
+[ext_resource type="Texture2D" uid="uid://hum3n53bhfmk" path="res://Art/Character/MrMeowgi/Punch1/frame_2_delay-0.13s.png" id="7_2t81h"]
+[ext_resource type="Texture2D" uid="uid://b11hbay2rvung" path="res://Art/Character/MrMeowgi/Walk/frame_2_delay-0.13s.png" id="7_mry6d"]
+[ext_resource type="Texture2D" uid="uid://bwn12alum7a8b" path="res://Art/Character/MrMeowgi/Punch1/frame_3_delay-0.13s.png" id="8_1jkur"]
+[ext_resource type="Texture2D" uid="uid://f0t3crp07utb" path="res://Art/Character/MrMeowgi/Walk/frame_3_delay-0.13s.png" id="8_ckb46"]
+[ext_resource type="Texture2D" uid="uid://cf85hbofbw6hx" path="res://Art/Character/MrMeowgi/Walk/frame_4_delay-0.13s.png" id="9_3et5t"]
+[ext_resource type="Texture2D" uid="uid://dy4peetb1n85o" path="res://Art/Character/MrMeowgi/Punch2/frame_0_delay-0.13s.png" id="9_7vtli"]
+[ext_resource type="Texture2D" uid="uid://ora6vg2nnw4i" path="res://Art/Character/MrMeowgi/Walk/frame_5_delay-0.13s.png" id="10_kbr2m"]
+[ext_resource type="Texture2D" uid="uid://br7olg3x0xdhd" path="res://Art/Character/MrMeowgi/Punch2/frame_1_delay-0.13s.png" id="10_puq1k"]
+[ext_resource type="Texture2D" uid="uid://b8ho180681q0s" path="res://Art/Character/MrMeowgi/Punch2/frame_2_delay-0.13s.png" id="11_86c8o"]
+[ext_resource type="Texture2D" uid="uid://b47141w2x6v2" path="res://Art/Character/MrMeowgi/Punch2/frame_3_delay-0.13s.png" id="12_igarw"]
 
 [resource]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("1_24n0w")
+"texture": ExtResource("1_cnrr7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_e5p1i")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_7cj7l")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_qhucl")
 }],
 "loop": true,
 "name": &"Idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_yj3dw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_fx243")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_2t81h")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_1jkur")
+}],
+"loop": true,
+"name": &"Punch1",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_7vtli")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_puq1k")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_86c8o")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_igarw")
+}],
+"loop": true,
+"name": &"Punch2",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_dsynt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_8532s")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_mry6d")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_ckb46")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_3et5t")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_kbr2m")
+}],
+"loop": true,
+"name": &"Walk",
 "speed": 5.0
 }]
