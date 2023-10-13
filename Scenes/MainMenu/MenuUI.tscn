@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://cf10quge3cjtu"]
+[gd_scene load_steps=10 format=3 uid="uid://cf10quge3cjtu"]
 
 [ext_resource type="Script" path="res://Scripts/UI/MenuUI.cs" id="1_pfgfv"]
 [ext_resource type="PackedScene" uid="uid://bmgc4b57tmbc1" path="res://Scenes/Game.tscn" id="2_bbscv"]
@@ -7,6 +7,7 @@
 [ext_resource type="FontFile" uid="uid://mu1cxlxal40c" path="res://Art/Fonts/Roboto/Roboto-Bold.ttf" id="5_xyy4p"]
 [ext_resource type="FontFile" uid="uid://dhj2bjpg8narn" path="res://Art/Fonts/Roboto/Roboto-Italic.ttf" id="6_hsrs8"]
 [ext_resource type="FontFile" uid="uid://e27tnhgvq05l" path="res://Art/Fonts/Roboto/Roboto-BoldItalic.ttf" id="7_mq8vy"]
+[ext_resource type="Texture2D" uid="uid://br48arpvbhc64" path="res://Art/Character/TempKarateKat.png" id="8_111ly"]
 
 [sub_resource type="Curve2D" id="Curve2D_wsqh6"]
 _data = {
@@ -14,7 +15,7 @@ _data = {
 }
 point_count = 3
 
-[node name="MenuUI" type="Control" node_paths=PackedStringArray("buttons", "pointer", "path", "helpText")]
+[node name="MenuUI" type="Control" node_paths=PackedStringArray("buttons", "pointer", "path", "helpText", "cat")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -27,6 +28,9 @@ pointer = NodePath("CanvasLayer/Pointer")
 path = NodePath("CanvasLayer/VBoxContainer/Path")
 gameScene = ExtResource("2_bbscv")
 helpText = NodePath("CanvasLayer/Help")
+cat = NodePath("CanvasLayer/Kat")
+catStart = Vector2(1035, 475)
+catEnd = Vector2(1035, 850)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -34,10 +38,10 @@ helpText = NodePath("CanvasLayer/Help")
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
-offset_left = 200.0
-offset_top = -91.0
-offset_right = 326.0
-offset_bottom = 91.0
+offset_left = 215.0
+offset_top = -75.0
+offset_right = 341.0
+offset_bottom = 107.0
 grow_vertical = 2
 alignment = 1
 
@@ -64,11 +68,52 @@ theme_override_colors/font_color = Color(0.545098, 0.545098, 0.545098, 1)
 theme_override_font_sizes/font_size = 40
 text = "Quit"
 
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer"]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 219.0
+offset_top = -190.0
+offset_right = 402.0
+offset_bottom = -160.0
+grow_vertical = 0
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/HBoxContainer"]
+custom_minimum_size = Vector2(70, 30)
+layout_mode = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Label" type="Label" parent="CanvasLayer/HBoxContainer/ColorRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -24.5
+offset_top = -13.0
+offset_right = 24.5
+offset_bottom = 13.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("5_xyy4p")
+text = "SPACE"
+vertical_alignment = 1
+
+[node name="Label" type="Label" parent="CanvasLayer/HBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_cmmnp")
+text = " to do anything"
+vertical_alignment = 1
+
 [node name="Pointer" type="Label" parent="CanvasLayer"]
 offset_left = -20.0
 offset_top = -33.0
 offset_right = 20.0
 offset_bottom = 33.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 45
 text = ">"
 horizontal_alignment = 1
@@ -81,6 +126,7 @@ offset_right = 1098.0
 offset_bottom = 133.0
 rotation = 0.127291
 theme = ExtResource("3_k43gg")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 70
 text = "Karate Kat"
 
@@ -96,6 +142,7 @@ offset_right = 451.0
 offset_bottom = 199.0
 grow_horizontal = 0
 grow_vertical = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_fonts/normal_font = ExtResource("4_cmmnp")
 theme_override_fonts/bold_font = ExtResource("5_xyy4p")
 theme_override_fonts/italics_font = ExtResource("6_hsrs8")
@@ -114,3 +161,8 @@ If your streak gets high enough, you'll have a chance to play a [b]timing miniga
 
 Press [b][i]the[/i][/b] button to go back."
 fit_content = true
+
+[node name="Kat" type="Sprite2D" parent="CanvasLayer"]
+position = Vector2(1035, 475)
+rotation = -0.762987
+texture = ExtResource("8_111ly")

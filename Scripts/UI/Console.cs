@@ -10,6 +10,7 @@ public partial class Console : Window
 	[Export] public ConsoleLineEdit inputBox;
 	
 	private bool _open = false;
+	public bool Open => _open;
 	
 	public override void _Ready()
 	{

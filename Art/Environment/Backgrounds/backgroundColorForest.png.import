@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c0joykdfyv1os"
-path="res://.godot/imported/54038-8-ground-hd-png-image-high-quality.png-2e930b0b606c89c73f01f1e357911f9a.ctex"
+uid="uid://75by1ouma0l0"
+path="res://.godot/imported/backgroundColorForest.png-0241c5f743ecb7b1cfac8eec5cb94a9b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/Environment/54038-8-ground-hd-png-image-high-quality.png"
-dest_files=["res://.godot/imported/54038-8-ground-hd-png-image-high-quality.png-2e930b0b606c89c73f01f1e357911f9a.ctex"]
+source_file="res://Art/Environment/Backgrounds/backgroundColorForest.png"
+dest_files=["res://.godot/imported/backgroundColorForest.png-0241c5f743ecb7b1cfac8eec5cb94a9b.ctex"]
 
 [params]
 

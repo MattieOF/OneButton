@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://3ss2ahrcmqnv"]
+[gd_scene load_steps=5 format=3 uid="uid://3ss2ahrcmqnv"]
 
 [ext_resource type="Script" path="res://Scripts/UI/GameOverUI.cs" id="1_fxypf"]
 [ext_resource type="FontFile" uid="uid://e27tnhgvq05l" path="res://Art/Fonts/Roboto/Roboto-BoldItalic.ttf" id="1_il1l3"]
+[ext_resource type="Texture2D" uid="uid://dxhyqollj1bk2" path="res://Art/Environment/Backgrounds/backgroundForest.png" id="2_kq0o2"]
 
 [sub_resource type="Curve2D" id="Curve2D_eeux3"]
 _data = {
@@ -17,6 +18,12 @@ scoreText = NodePath("ScoreText")
 path = NodePath("VBoxContainer/Path")
 gameScene = "res://Scenes/Game.tscn"
 menuScene = "res://Scenes/MainMenu/Menu.tscn"
+
+[node name="BackgroundForest" type="Sprite2D" parent="."]
+modulate = Color(0.372549, 0.372549, 0.372549, 1)
+position = Vector2(582, 347)
+scale = Vector2(1.36, 1)
+texture = ExtResource("2_kq0o2")
 
 [node name="Label" type="Label" parent="."]
 anchors_preset = 5

@@ -14,7 +14,7 @@ config/name="Karate Kat"
 config/description="A game with only one input for the first project of UoP game dev :)"
 run/main_scene="res://Scenes/MainMenu/Menu.tscn"
 config/features=PackedStringArray("4.1", "C#", "GL Compatibility")
-config/icon="res://icon.svg"
+config/icon="res://Art/Character/TempKarateKat.png"
 
 [autoload]
 
@@ -60,4 +60,4 @@ toggle_console={
 
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
-environment/defaults/default_clear_color=Color(0.0901961, 0.262745, 0.368627, 1)
+environment/defaults/default_clear_color=Color(0.313726, 0.627451, 0.831373, 1)

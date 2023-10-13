@@ -7,24 +7,26 @@
 [ext_resource type="AudioStream" uid="uid://bgnfs26d0yn5j" path="res://Sound/Punch/Punch3.wav" id="4_05hw0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tnq8x"]
-size = Vector2(300, 450)
+size = Vector2(238.333, 313.333)
 
-[node name="Enemy" type="Node2D" node_paths=PackedStringArray("healthBar", "attackRay")]
+[node name="Enemy" type="Node2D" node_paths=PackedStringArray("healthBar", "sprite", "attackRay") groups=["Enemy"]]
 script = ExtResource("1_ehqxt")
 healthBar = NodePath("HP")
+sprite = NodePath("Sprite")
 attackRay = NodePath("AttackRaycast")
 punchSounds = [ExtResource("2_pva43"), ExtResource("3_uhdwd"), ExtResource("4_05hw0")]
 speedRange = Vector2(50, 120)
 hpRange = Vector2(150, 200)
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
-scale = Vector2(0.4, 0.4)
+scale = Vector2(0.6, 0.6)
 sprite_frames = ExtResource("1_8603q")
 animation = &"idle"
 
 [node name="Body" type="StaticBody2D" parent="Sprite"]
 
 [node name="Shape" type="CollisionShape2D" parent="Sprite/Body"]
+position = Vector2(-2.5, 0)
 shape = SubResource("RectangleShape2D_tnq8x")
 
 [node name="HP" type="ProgressBar" parent="."]

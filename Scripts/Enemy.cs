@@ -3,6 +3,7 @@ using Godot;
 public partial class Enemy : Node2D
 {
 	[Export] public ProgressBar healthBar;
+	[Export] public AnimatedSprite2D sprite;
 	[Export] public RayCast2D attackRay;
 	
 	[Export] public AudioStream[] punchSounds = new AudioStream[3]; 
@@ -74,6 +75,7 @@ public partial class Enemy : Node2D
 	{
 		_dir = newDir;
 		attackRay.TargetPosition = newDir * _attackRange;
+		sprite.FlipH = newDir.X > 0;
 	}
 
 	public bool Damage(float dmg)

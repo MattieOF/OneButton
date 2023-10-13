@@ -1,7 +1,13 @@
-[gd_scene load_steps=2 format=3 uid="uid://27cm4eokcagc"]
+[gd_scene load_steps=3 format=3 uid="uid://27cm4eokcagc"]
 
+[ext_resource type="Texture2D" uid="uid://dxhyqollj1bk2" path="res://Art/Environment/Backgrounds/backgroundForest.png" id="1_5j41l"]
 [ext_resource type="PackedScene" uid="uid://cf10quge3cjtu" path="res://Scenes/MainMenu/MenuUI.tscn" id="1_mmj42"]
 
 [node name="Menu" type="Node2D"]
+
+[node name="BackgroundForest" type="Sprite2D" parent="."]
+position = Vector2(582, 347)
+scale = Vector2(1.36, 1)
+texture = ExtResource("1_5j41l")
 
 [node name="MenuUI" parent="." instance=ExtResource("1_mmj42")]

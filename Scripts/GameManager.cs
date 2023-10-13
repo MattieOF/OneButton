@@ -50,7 +50,7 @@ public partial class GameManager : Node2D
 		_streak++;
 		hud.SetStreak(_streak);
 
-		if (_streak != 0 && _streak % 15 == 0)
+		if (_streak != 0 && _streak % 10 == 0)
 		{
 			var challenge = timingChallenge.Instantiate() as TimingChallenge;
 			AddChild(challenge);

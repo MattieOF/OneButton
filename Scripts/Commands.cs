@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Godot;
 
 public class Commands
@@ -16,6 +17,11 @@ public class Commands
         AddCommand(new []{"clear", "cls"}, Clear);
         AddCommand("echo", Echo);
         AddCommand("version", PrintVersions);
+        AddCommand("help", args =>
+        {
+            Console.Instance.WriteLine($"Commands: {string.Join(", ", _commands.Keys)}");
+            return true;
+        });
         AddCommand("toggle_console", _ => 
         { 
             Console.Instance.ToggleConsole();
@@ -35,6 +41,66 @@ public class Commands
                 return true;
             }
             
+            return false;
+        });
+        AddCommand("play_game", args =>
+        {
+            Console.Instance.GetTree().ChangeSceneToFile("res://Scenes/Game.tscn");
+            return true;
+        });
+        AddCommand("kill", args =>
+        {
+            // if (Console.Instance.GetNodeOrNull("/root/Game/Player") is Player player)
+            // {
+            //     Console.Instance.WriteLine("Ouch.", Colors.Green);
+            //     player.Damage(100);
+            //     return true;
+            // }
+            // Console.Instance.WriteLine("No player in the tree!", Colors.Red);
+
+            var player = Console.Instance.GetTree().GetNodesInGroup("Player");
+            if (player.Count != 0)
+            {
+                Console.Instance.WriteLine("Ouch.", Colors.Green);
+                ((Player)player[0]).Damage(100);
+                return true;
+            }
+            
+            Console.Instance.WriteLine("No player in the tree!", Colors.Red);
+            return false;
+        });
+        AddCommand("kill_enemies", args =>
+        {
+            // var enemies = Console.Instance.GetTree().Root.FindChildren("*", "Enemy");
+            var enemies = Console.Instance.GetTree().GetNodesInGroup("Enemy");
+            foreach (var enemy in enemies)
+                ((Enemy) enemy).Damage(((Enemy) enemy).MaxHP);
+            Console.Instance.WriteLine($"Killed {enemies.Count} enemies.. cheating mf 🤢", Colors.Green);
+            return true;
+        });
+        AddCommand("change_hp", args =>
+        {
+            if (args.Length == 0)
+            {
+                Console.Instance.WriteLine("You need to provide an amount, dummy.", Colors.Red);
+                return false;
+            }
+            
+            var player = Console.Instance.GetTree().GetFirstNodeInGroup("Player") as Player;
+            if (player is null)
+            {
+                Console.Instance.WriteLine("No players!", Colors.Red);
+                return false;
+            }
+
+            if (float.TryParse(args[0], out var amount))
+            {
+                player.Damage(amount);
+                Console.Instance.WriteLine($"{(amount < 0 ? "Healed" : "Lost")} {amount} HP!", Colors.Green);
+                return true;
+            }
+            
+            Console.Instance.WriteLine("The amounts gotta be a real number!", Colors.Red);
             return false;
         });
     }

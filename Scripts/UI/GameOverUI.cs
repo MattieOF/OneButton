@@ -7,7 +7,7 @@ public partial class GameOverUI : CanvasLayer
     [Export] public Label pointer;
     [Export] public Label scoreText;
     [Export] public Path2D path;
-    [Export] public string gameScene, menuScene;
+    [Export(PropertyHint.File, "*.tscn")] public string gameScene, menuScene;
 
     private double _selection = 0;
 
@@ -56,7 +56,7 @@ public partial class GameOverUI : CanvasLayer
             buttons[i].AddThemeColorOverride("font_color", currentColor);
         }
 
-        if (Input.IsActionJustPressed("the_input"))
+        if (Input.IsActionJustPressed("the_input") && !Console.Instance.Open)
         {
             var globals = GetNode<Globals>("/root/Globals");
             globals.StartMusic();
